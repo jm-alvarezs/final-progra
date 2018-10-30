@@ -1,4 +1,5 @@
 <h1>Proyecto Final de Programación Intermedia</h1>
+<p><b>Equipo:</b></p>
 <p>Juan Manuel Alvarez Sánchez</p>
 <p>Orlando Xavier Torres Guerra </p>
 <h2>Instrucciones</h2>
