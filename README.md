@@ -1,3 +1,3 @@
 <h1>Proyecto Final de Programación Intermedia</h1>
-<h2>Juan Manuel Alvarez Sanchez</h2>
-<h2>Orlando Torres Guerra</h2>
+<p>Juan Manuel Alvarez Sánchez</p>
+<p>Orlando Xavier Torres Guerra</p>
