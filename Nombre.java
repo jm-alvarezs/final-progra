@@ -2,27 +2,11 @@
 public class Nombre {
 	String nombres;
 	String apellidos;
-	String prefijo;
-	String sufijo;
-	
-	public Nombre(String nombres, String apellidos, String prefijo, String sufijo) {
-		setNombres(nombres);
-		setApellidos(apellidos);
-		setPrefijo(prefijo);
-		setSufijo(sufijo);
-	}
 	
 	public Nombre(String nombres, String apellidos) {
 		setNombres(nombres);
 		setApellidos(apellidos);
-		setPrefijo("");
-		setSufijo("");
-	}
-	
-	public String toString() {
-		String sufijo = getSufijo();
-		if(!sufijo.equals("")) sufijo = ", "+sufijo;
-		return getPrefijo()+""+getNombres()+" "+getApellidos()+sufijo;
+
 	}
 	
 	public void setNombres(String nombres) {
@@ -41,20 +25,10 @@ public class Nombre {
 		return apellidos;
 	}
 	
-	public void setPrefijo(String prefijo) {
-		this.prefijo = prefijo;
-	}
+   public String toString() {
+   
+      return getNombres()+" "+getApellidos();
+   }
 	
-	public String getPrefijo() {
-		return prefijo;
-	}
-	
-	public void setSufijo(String sufijo) {
-		this.sufijo = sufijo;
-	}
-	
-	public String getSufijo() {
-		return sufijo;
-	}
-	
+
 }
