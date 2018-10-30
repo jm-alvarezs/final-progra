@@ -46,8 +46,7 @@ public class DetalleCompra {
     }
 
     public String toString() {
-        return Texto.ajustarCaracteres(Integer.toString(producto.getIdProd()), 8)
-                + Texto.ajustarCaracteres(producto.getNombreProd(), 30)
+        return Texto.ajustarCaracteres(producto.getNombreProd(), 30)
                 + Texto.ajustarCaracteres(Texto.decimalFormat().format(producto.getPrecio()), 10)
                 + Texto.ajustarCaracteres(Texto.decimalFormat().format(this.getCantidad()), 4)
                 + Texto.ajustarCaracteres(Texto.decimalFormat().format(this.getSubtotal()), 8)

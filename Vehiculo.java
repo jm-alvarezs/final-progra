@@ -1,7 +1,7 @@
 public class Vehiculo extends Producto {
 	private String vin;
 	private String color;
-	private Strings motor;
+	private String motor;
 	private int modelo;
 	private int pasajeros;
 		
@@ -42,7 +42,7 @@ public class Vehiculo extends Producto {
 		return color;
 	}
 	
-	public Motor getMotor(){
+	public String getMotor(){
 		return motor;
 	}
 	
@@ -55,6 +55,6 @@ public class Vehiculo extends Producto {
 	}
 	
 	public String toString(){
-		return super.toString()+"\nVIN: "+getVIn()+"\nColor "+getColor()+"\nMotor: "+getMotor()+"\nModelo: "+getModelo()+"\nPasajeros: "+getPasajeros();
+		return super.toString()+"\nVIN: "+getVin()+"\nColor "+getColor()+"\nMotor: "+getMotor()+"\nModelo: "+getModelo()+"\nPasajeros: "+getPasajeros();
 	}
 }

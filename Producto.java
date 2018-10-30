@@ -1,10 +1,10 @@
 abstract class Producto {
 	protected double precio;
-	protected String nombre;	
+	protected String nombreProd;	
 	
-	public Producto(double precio, String nombre) {
+	public Producto(double precio, String nombreProd) {
 		setPrecio(precio);
-		setNombre(nombre);
+		setNombreProd(nombreProd);
 	}
 
 	public void setPrecio(double precio) {
@@ -15,17 +15,16 @@ abstract class Producto {
 		return precio;
 	}
 
-	public void setNombre(String nombre){
-		this.nombre = nombre;	
+	public void setNombreProd(String nombreProd){
+		this.nombreProd = nombreProd;	
 	}
 	
-	public String getNombre(){
-		return nombre;
+	public String getNombreProd(){
+		return nombreProd;
 	}
-	
 
 	public String toString() {
-		return "\nNombre: "+getNombre()+"\nPrecio: "+getPrecio();
+		return "\nNombre: "+getNombreProd()+"\nPrecio: "+getPrecio();
 	}
 
 }
