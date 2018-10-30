@@ -1,20 +1,10 @@
-public class Producto {
-	protected int idProd;
+abstract class Producto {
 	protected double precio;
 	protected String nombre;	
 	
-	public Producto(int idProd, double precio, String nombre) {
-		setIdProd(idProd);
+	public Producto(double precio, String nombre) {
 		setPrecio(precio);
 		setNombre(nombre);
-	}
-	
-	public void setIdProd(int idProd) {
-		this.idProd = idProd;
-	}
-
-	public int getIdProd() {
-		return idProd;
 	}
 
 	public void setPrecio(double precio) {
@@ -35,7 +25,7 @@ public class Producto {
 	
 
 	public String toString() {
-		return"ID: "+getIdProd()+"\nNombre: "+getNombre()+"\nPrecio: "+getPrecio();
+		return "\nNombre: "+getNombre()+"\nPrecio: "+getPrecio();
 	}
 
 }

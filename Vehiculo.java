@@ -1,12 +1,12 @@
 public class Vehiculo extends Producto {
 	private String vin;
 	private String color;
-	private Motor motor;
+	private Strings motor;
 	private int modelo;
 	private int pasajeros;
 		
-	public Vehiculo(int idProd, double precio, String nombre, String vin, String color, Motor motor, int modelo, int pasajeros){
-		super(idProd, precio, nombre);
+	public Vehiculo(int idProd, double precio, String nombre, String vin, String color, String motor, int modelo, int pasajeros){
+		super(precio, nombre + motor);
 		setVin(vin);
 		setColor(color);
 		setMotor(motor);
@@ -22,7 +22,7 @@ public class Vehiculo extends Producto {
 		this.color = color;
 	}
 	
-	public void setMotor(Motor motor){
+	public void setMotor(String motor){
 		this.motor = motor;
 	}
 	
