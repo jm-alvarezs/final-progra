@@ -1,17 +1,12 @@
-
 public class Producto {
 	protected int idProd;
 	protected double precio;
-	protected String nombreProd;
-	protected String descripcionProd;
-	protected int stock;
+	protected String nombre;	
 	
-	public Producto(int idProd, double precio, String nombre, String descripcionProd, int stock) {
+	public Producto(int idProd, double precio, String nombre) {
 		setIdProd(idProd);
 		setPrecio(precio);
-		setNombreProd(nombre);
-		setDescripcionProd(descripcionProd);
-		setStock(stock);
+		setNombre(nombre);
 	}
 	
 	public void setIdProd(int idProd) {
@@ -30,32 +25,17 @@ public class Producto {
 		return precio;
 	}
 
-	public void setNombreProd(String nombreProd) {
-		this.nombreProd = nombreProd;
+	public void setNombre(String nombre){
+		this.nombre = nombre;	
 	}
-
-	public String getNombreProd() {
-		return nombreProd;
+	
+	public String getNombre(){
+		return nombre;
 	}
-
-	public void setDescripcionProd(String descripcionProd) {
-		this.descripcionProd = descripcionProd;
-	}
-
-	public String getDescripcionProd() {
-		return descripcionProd;
-	}
-
-	public void setStock(int stock) {
-		this.stock = stock;
-	}
-
-	public int getStock() {
-		return stock;
-	}
+	
 
 	public String toString() {
-		return "Datos de Producto: "+"\nID: "+getIdProd()+"\nNombre: "+getNombreProd()+"\nDescripcion: "+getDescripcionProd()+"\nPrecio: "+getPrecio()+"\nStock: "+getStock();
+		return"ID: "+getIdProd()+"\nNombre: "+getNombre()+"\nPrecio: "+getPrecio();
 	}
 
 }
