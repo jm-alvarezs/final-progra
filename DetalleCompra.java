@@ -1,4 +1,6 @@
-public class DetalleCompra {
+import java.io.Serializable;
+
+public class DetalleCompra implements Serializable{
     private Producto producto;
     private double cantidad;
     private Fecha fechaCompra;

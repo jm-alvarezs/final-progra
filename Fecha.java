@@ -1,4 +1,6 @@
-public class Fecha {
+import java.io.Serializable;
+
+public class Fecha implements Serializable {
 	private int dia;
 	private int mes;
 	private String strmes;
@@ -37,7 +39,7 @@ public class Fecha {
 	
 	public void setStrmes(int mes) {
 		String[] meses = new String[] {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
-		this.strmes = meses[mes + 1];
+		this.strmes = meses[mes];
 	}
 	
 	public String getStrmes() {

@@ -1,5 +1,6 @@
+import java.io.Serializable;
 
-public class Cliente extends Persona {
+public class Cliente extends Persona implements Serializable {
    String RFC;
    
     public Cliente(int ID, Nombre nombre, Direccion direccion, Fecha miembroDesde, String RFC) {

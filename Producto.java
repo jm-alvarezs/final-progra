@@ -1,4 +1,6 @@
-abstract class Producto {
+import java.io.Serializable;
+
+abstract class Producto implements Serializable{
 	protected double precio;
 	protected String nombreProd;	
 	

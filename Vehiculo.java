@@ -1,4 +1,6 @@
-public class Vehiculo extends Producto {
+import java.io.Serializable;
+
+public class Vehiculo extends Producto implements Serializable{
 	private String vin;
 	private String color;
 	private String motor;

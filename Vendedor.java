@@ -1,4 +1,6 @@
-public class Vendedor extends Persona {
+import java.io.Serializable;
+
+public class Vendedor extends Persona implements Serializable{
     private double salario;
     private double comision;
 

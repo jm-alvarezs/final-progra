@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.*;
 
-public class Compra {
+public class Compra implements Serializable{
     private int idCompra;
     private Cliente cliente;
     private Vendedor vendedor;

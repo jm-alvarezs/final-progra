@@ -1,5 +1,6 @@
+import java.io.Serializable;
 
-public class Persona {
+public class Persona implements Serializable {
     protected int idPersona;
     protected Nombre nombre;
     protected Direccion direccion;

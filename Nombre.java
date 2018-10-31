@@ -1,5 +1,6 @@
+import java.io.Serializable;
 
-public class Nombre {
+public class Nombre implements Serializable{
 	String nombres;
 	String apellidos;
 	
