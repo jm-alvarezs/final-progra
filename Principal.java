@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.ArrayList;
 
 public class Principal {
     public static void main(String args[]) {
@@ -7,21 +8,47 @@ public class Principal {
         Fecha f = new Fecha(31, 10, 2018);
         String rfc = "TGOR011199POS";
         Cliente c = new Cliente(1, n, d, f, rfc);
-        String filename = "C:\\Users/saube/Desktop/Projects/progra-final/files/clientes-txt";
-        /*try {
-            ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(filename));
+        String clientesFile = "./files/clientes.txt";
+        //writeCliente(clientesFile, c);
+        String facturasFile = "./files/facturas.txt";
+        ArrayList<Cliente> clientes = readClientes(clientesFile);
+        System.out.print(clientes);
+    }
+
+    public static void writeCliente(String filename, Cliente c){
+        try {
+            ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(filename, true));
             o.writeObject(c);
             o.close();
         }catch (FileNotFoundException e) {
             e.printStackTrace();
         }catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
+    }
 
+    public static void writeClientes(String filename, ArrayList<Cliente> clientes) {
+        try {
+            ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(filename, true));
+            for(int i = 0; i < clientes.size(); i++){
+                o.writeObject(clientes.get(i));
+                o.close();
+            }
+        }catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static ArrayList<Cliente> readClientes(String filename) {
+        ArrayList<Cliente> clientes = new ArrayList<Cliente>();
         try {
             ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename));
-            Cliente c2 = (Cliente) in.readObject();
-            System.out.print(c2);
+            Cliente c = (Cliente) in.readObject();
+            //TODO: while
+            /*Arroja error: Invalid type code AC*/
+            clientes.add(c);
         }catch(ClassNotFoundException e){
             e.printStackTrace();
         }catch(FileNotFoundException e) {
@@ -29,6 +56,6 @@ public class Principal {
         }catch(IOException e){
             e.printStackTrace();
         }
-
+        return clientes;
     }
 }
