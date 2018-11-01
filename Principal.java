@@ -8,9 +8,8 @@ public class Principal {
         Fecha f = new Fecha(31, 10, 2018);
         String rfc = "TGOR011199POS";
         Cliente c = new Cliente(1, n, d, f, rfc);
-        String clientesFile = "./files/clientes.txt";
+        String clientesFile = "./files/clientes.dat";
         //writeCliente(clientesFile, c);
-        String facturasFile = "./files/facturas.txt";
         ArrayList<Cliente> clientes = readClientes(clientesFile);
         System.out.print(clientes);
     }
@@ -44,18 +43,23 @@ public class Principal {
     public static ArrayList<Cliente> readClientes(String filename) {
         ArrayList<Cliente> clientes = new ArrayList<Cliente>();
         try {
-            ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename));
+            FileInputStream fis = new FileInputStream(filename);
+            ObjectInputStream in = new ObjectInputStream(fis);
             Cliente c = (Cliente) in.readObject();
-            //TODO: while
-            /*Arroja error: Invalid type code AC*/
-            clientes.add(c);
+            while(c != null){
+                clientes.add(c);
+                c = (Cliente) in.readObject();
+            }
+            fis.close();
+            in.close();
         }catch(ClassNotFoundException e){
-            e.printStackTrace();
+            //e.printStackTrace();
         }catch(FileNotFoundException e) {
-            e.printStackTrace();
-        }catch(IOException e){
-            e.printStackTrace();
+            //e.printStackTrace();
+        }catch(IOException e) {
+            //e.printStackTrace();
         }
+
         return clientes;
     }
 }
