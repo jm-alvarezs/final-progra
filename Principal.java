@@ -11,19 +11,6 @@ public class Principal {
         String clientesFile = "./files/clientes.dat";
         //writeCliente(clientesFile, c);
         ArrayList<Cliente> clientes = readClientes(clientesFile);
-        System.out.print(clientes);
-    }
-
-    public static void writeCliente(String filename, Cliente c){
-        try {
-            ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(filename, true));
-            o.writeObject(c);
-            o.close();
-        }catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public static void writeClientes(String filename, ArrayList<Cliente> clientes) {
