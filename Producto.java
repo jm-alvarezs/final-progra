@@ -2,11 +2,11 @@ import java.io.Serializable;
 
 abstract class Producto implements Serializable{
 	protected double precio;
-	protected String nombreProd;	
+	protected String nombre;	
 	
 	public Producto(double precio, String nombreProd) {
 		setPrecio(precio);
-		setNombreProd(nombreProd);
+		setNombre(nombre);
 	}
 
 	public void setPrecio(double precio) {
@@ -17,16 +17,16 @@ abstract class Producto implements Serializable{
 		return precio;
 	}
 
-	public void setNombreProd(String nombreProd){
-		this.nombreProd = nombreProd;	
+	public void setNombre(String nombre){
+		this.nombre = nombre;	
 	}
 	
-	public String getNombreProd(){
-		return nombreProd;
+	public String getNombre(){
+		return nombre;
 	}
 
 	public String toString() {
-		return "\nNombre: "+getNombreProd()+"\nPrecio: "+getPrecio();
+		return "\nNombre: "+getNombre()+"\nPrecio: "+getPrecio();
 	}
 
 }
