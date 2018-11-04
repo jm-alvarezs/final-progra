@@ -8,8 +8,13 @@ public class Principal {
         Fecha f = new Fecha(31, 10, 2018);
         String rfc = "TGOR011199POS";
         Cliente c = new Cliente(1, n, d, f, rfc);
+
+
+
         String clientesFile = "./files/clientes.dat";
         //Archivos.writeCliente(clientesFile, c);
         ArrayList<Cliente> clientes = Archivos.readClientes(clientesFile);
     }
+
+    public static 
 }
