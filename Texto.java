@@ -25,37 +25,6 @@ public class Texto {
 		return nuevo;
 	}
 	
-	//Regresar 1 si es vocal o 0 si no
-	public int esVocal(String letra) {
-		if(letra.equals("a") || letra.equals("e") || letra.equals("i") || letra.equals("o") || letra.equals("u"))
-			return 1;
-		return 0;
-	}
-	
-	//Contar vocales
-	public int contarVocales() {
-		int cantVocal = 0;
-		for(int i = 0; i < this.getTexto().length() - 1; i++) {
-			cantVocal += this.esVocal(this.getTexto().substring(i, i + 1));
-		}
-		cantVocal += this.esVocal(this.getTexto().substring(this.getTexto().length() - 1));
-		return cantVocal;
-	}
-	
-	//Regresa cantidad de tokens separados por espacios
-	public int contarPalabras() {
-		StringTokenizer tokens = new StringTokenizer(this.getTexto(), " ");
-		return tokens.countTokens();
-	}
-	
-	//Reemplazar todas las palabras del texto
-	public void reemplazarPalabras(String palabra) {
-		StringTokenizer tokens = new StringTokenizer(this.getTexto(), " ");
-		while(tokens.hasMoreTokens()) {
-			this.texto = this.texto.replaceAll(tokens.nextToken(), palabra);
-		}
-	}
-
 	public void convertirMayusculas() {
 		this.texto = texto.toUpperCase();
 	}
