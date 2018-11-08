@@ -3,11 +3,11 @@ import java.text.*;
 
 public class Factura {
 	protected String folio;
-	protected Cliente cliente;
+	protected int cliente;
 	protected ArrayList <DetalleFactura> detalles;
 	protected Fecha fecha;
 	
-	public Factura(String folio, Fecha fecha, Cliente cliente, ArrayList<DetalleFactura> detalles) {
+	public Factura(String folio, Fecha fecha, int cliente, ArrayList<DetalleFactura> detalles) {
 		setFolio(folio);
 		setCliente(cliente);
 		setDetalles(detalles);
@@ -26,11 +26,11 @@ public class Factura {
 		return folio;
 	}
 		
-	public void setCliente(Cliente cliente) {
+	public void setCliente(int cliente) {
 		this.cliente = cliente;
 	}
 	
-	public Cliente getCliente() {
+	public int getCliente() {
 		return cliente;
 	}
 	
@@ -54,7 +54,7 @@ public class Factura {
 		DecimalFormat dos = new DecimalFormat("0.00");
 		return "\n"+Texto.ajustarCaracteres("AT&T Comunicaciones Digitales, S. de R.L. de C.V.", 90)+"Fecha: "+fecha.toString()+
 				"\n"+Texto.ajustarCaracteres(" ", 90)+"Folio: "+this.getFolio()+
-				"\n"+cliente.toString()+
+				"\n"+Archivos.getCliente(cliente).toString()+
 				"\n"+this.getEncabezado(11)+
 				"\n"+listToString(detalles)+
 				"\n\n"+Texto.ajustarCaracteres("", 115)+"Subtotal: "+dos.format(calcularSubtotalFactura())+

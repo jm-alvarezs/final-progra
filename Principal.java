@@ -70,10 +70,9 @@ public class Principal {
         return vehiculos;
     }
 
-    public static ArrayList<Factura> generarFacturas() {
-      ArrayList<Factura> facturas=new ArrayList<Factura>();
-      
-      facturas.add(new Factura("FAC001",new Fecha(10,11,18),new Cliente(1234,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"BAFJ701213SB10"),new ArrayList<DetalleFactura>()));
+    public static ArrayList<Factura> generarFacturas(ArrayList<Cliente> clientes) {
+      ArrayList<Factura> facturas = new ArrayList<Factura>();
+      facturas.add(new Factura("FAC001",new Fecha(10,11,18), clientes.get(0), detalles.get(0)));
         /*TODO:
             Toma sintaxis de generar Autos
             20 objetos a generar
@@ -88,6 +87,10 @@ public class Principal {
     }
 
     public static ArrayList<Cliente> generarClientes() {
+        /*
+            TODO:
+            Cambiar los nombres de los clientes
+        */
         ArrayList<Cliente> clientes=new ArrayList<Cliente>();
         clientes.add(new Cliente(1234,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"BAFJ701213SB10"));
         clientes.add(new Cliente(4343,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"OIPF790205PT26"));
@@ -109,13 +112,7 @@ public class Principal {
         clientes.add(new Cliente(2134,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"YFHD101023UH25"));
         clientes.add(new Cliente(4533,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"OACR710101JA00"));
         clientes.add(new Cliente(6162,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"DAFT893821DD10"));
-        
-        /*TODO:
-            Usa instrucciones de factura
-            OJO: Busca RFCs en linea o algo asi o saca el de tu mama y modificalo
-            pero que tenga la misma cantidad de caracteres
-        */
-        return new ArrayList<Cliente>();
+        return clientes;
     }
 
     public static ArrayList<Vendedor> generarVendedores() {

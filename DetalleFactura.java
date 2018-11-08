@@ -1,17 +1,17 @@
 import java.text.*;
 
 class DetalleFactura {
-	Producto producto;
+	int producto;
 	int cant;
 	double descuento;
 	
-	public DetalleFactura(Producto producto, int cant) {
+	public DetalleFactura(int producto, int cant) {
 		setProducto(producto);
 		setCant(cant);
 		setDescuento(0);
 	}
 	
-	public DetalleFactura(Producto producto, int cant, double descuento) {
+	public DetalleFactura(int producto, int cant, double descuento) {
 		setProducto(producto);
 		setCant(cant);
 		setDescuento(descuento);
@@ -21,15 +21,15 @@ class DetalleFactura {
 		DecimalFormat dos = new DecimalFormat("0.00");
 		int size = 10;
 		return Texto.ajustarCaracteres(Integer.toString(getCant()), size)+" | "+
-			Texto.ajustarCaracteres(producto.getNombre(), size)+" | "+
-			Texto.ajustarCaracteres(Double.toString(producto.getPrecio()), size)+" | "+
+			Texto.ajustarCaracteres(Archivos.getVehiculo(producto).getNombre(), size)+" | "+
+			Texto.ajustarCaracteres(Double.toString(Archivos.getVehiculo(producto).getPrecio()), size)+" | "+
 			Texto.ajustarCaracteres(Double.toString(this.getImporte()), size)+" | "+
 			Texto.ajustarCaracteres(Double.toString(this.getDescuento()), size)+" | "+
 			Texto.ajustarCaracteres(Double.toString(this.calcularSubtotal()), size)+" | "+
 			Texto.ajustarCaracteres(dos.format(this.calcularIVA()), size);
 	}
 	
-	public void setProducto(Producto producto) {
+	public void setProducto(int producto) {
 		this.producto = producto;
 	}
 	

@@ -3,6 +3,44 @@ import java.util.ArrayList;
 
 public class Archivos implements Serializable {
 
+    public static Cliente getCliente(int id){
+        try {
+            FileInputStream fis = new FileInputStream(filename);
+            ObjectInputStream in = new ObjectInputStream(fis);
+            Cliente cliente = (Cliente) in.readObject();
+            while(cliente != null){
+                if(cliente.getIdPersona() == id) return cliente;
+                cliente = (Cliente) in.readObject();
+            }
+            fis.close();
+            in.close();
+        }catch(ClassNotFoundException e){
+        }catch(FileNotFoundException e) {
+        }catch(IOException e) {
+        }
+
+        return null;
+    }
+
+    public static Vehiculo getVehiculo(int id){
+        try {
+            FileInputStream fis = new FileInputStream(filename);
+            ObjectInputStream in = new ObjectInputStream(fis);
+            Vehiculo vehiculo = (Vehiculo) in.readObject();
+            while(cliente != null){
+                if(vehiculo.getIdPersona() == id) return vehiculo;
+                vehiculo = (Vehiculo) in.readObject();
+            }
+            fis.close();
+            in.close();
+        }catch(ClassNotFoundException e){
+        }catch(FileNotFoundException e) {
+        }catch(IOException e) {
+        }
+
+        return null;
+    }
+
     public static void writeClientes(String filename, ArrayList<Cliente> clientes) {
         try {
             ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(filename, true));
