@@ -52,7 +52,7 @@ public class Factura {
 	
 	public String toString() {
 		DecimalFormat dos = new DecimalFormat("0.00");
-		return "\n"+Texto.ajustarCaracteres("AT&T Comunicaciones Digitales, S. de R.L. de C.V.", 90)+"Fecha: "+fecha.toString()+
+		return "\n"+Texto.ajustarCaracteres("Mercedes-Benz", 90)+"Fecha: "+fecha.toString()+
 				"\n"+Texto.ajustarCaracteres(" ", 90)+"Folio: "+this.getFolio()+
 				"\n"+Archivos.getCliente(cliente).toString()+
 				"\n"+this.getEncabezado(11)+

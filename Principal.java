@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Principal {
     public static void main(String args[]) {
@@ -9,16 +10,12 @@ public class Principal {
         String rfc = "TGOR011199POS";
         Cliente c = new Cliente(1, n, d, f, rfc);
 
+        HashMap<String, Cliente> clientes = new HashMap<String, Cliente>();
+
         //ArrayList <DetalleFactura> detalles;
         //Factura f=new Factura(001,c,)
         
-        /*DetalleFactura d1 = new DetalleFactura(v, 1, 0);
-        DetalleFactura d2 = new DetalleFactura(v, 1, 0);
-        DetalleFactura d3 = new DetalleFactura(v, 1, 0);
-        DetalleFactura d4 = new DetalleFactura(v, 1, 0);
-        DetalleFactura d5 = new DetalleFactura(v, 1, 0);
-        DetalleFactura d6 = new DetalleFactura(v, 1, 0);
-        DetalleFactura d7 = new DetalleFactura(v, 1, 0);*/
+        //DetalleFactura d1 = new DetalleFactura(v, 1, 0);
         
         String clientesFile = "./files/clientes.dat";
         //Archivos.writeClientes(clientesFile, clientes);
@@ -28,7 +25,7 @@ public class Principal {
 
         ArrayList<Factura> facturas = new ArrayList<Factura>();
 
-    //ESTA LINEA VA SIN COMENTARIO   facturas.add(new Factura("0001", c, detalles, f));
+        //ESTA LINEA VA SIN COMENTARIO   facturas.add(new Factura("0001", c, detalles, f));
         //Archivos.writeFacturas(facturasFile, generarFacturas());
         //ArrayList<Factura> facturas = Archivos.readFacturas(facturasFile);
 
@@ -72,7 +69,7 @@ public class Principal {
 
     public static ArrayList<Factura> generarFacturas(ArrayList<Cliente> clientes) {
       ArrayList<Factura> facturas = new ArrayList<Factura>();
-      facturas.add(new Factura("FAC001",new Fecha(10,11,18), clientes.get(0), detalles.get(0)));
+      facturas.add(new Factura("FAC001", new Fecha(10,11,18), 1234, 1234));
         /*TODO:
             Toma sintaxis de generar Autos
             20 objetos a generar
@@ -93,10 +90,10 @@ public class Principal {
         */
         ArrayList<Cliente> clientes=new ArrayList<Cliente>();
         clientes.add(new Cliente(1234,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"BAFJ701213SB10"));
-        clientes.add(new Cliente(4343,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"OIPF790205PT26"));
-        clientes.add(new Cliente(5454,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"MAHM670102NJ19"));
-        clientes.add(new Cliente(4344,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"CAGM640618JY29"));
-        clientes.add(new Cliente(6462,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"OLAL701201RK94"));
+        clientes.add(new Cliente(4343,new Nombre("Luis","Doriz"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"OIPF790205PT26"));
+        clientes.add(new Cliente(5454,new Nombre("Cesar","García"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"MAHM670102NJ19"));
+        clientes.add(new Cliente(4344,new Nombre("Roberto","Montemayor"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"CAGM640618JY29"));
+        clientes.add(new Cliente(6462,new Nombre("Fernando","Zablah"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"OLAL701201RK94"));
         clientes.add(new Cliente(2321,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"ERER671120ET10"));
         clientes.add(new Cliente(6742,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"SADD780812FH92"));
         clientes.add(new Cliente(5454,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"CAHA811231YH89"));
