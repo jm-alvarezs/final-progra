@@ -47,7 +47,7 @@ public class Fecha implements Serializable {
 	}
 	
 	public String toString() {
-		return year+"-"+mes+"-"+dia;
+		return dia+"-"+mes+"-"+year;
 	}
 	
 }

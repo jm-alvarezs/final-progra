@@ -10,14 +10,15 @@ public class Principal {
         Cliente c = new Cliente(1, n, d, f, rfc);
 
         //ArrayList <DetalleFactura> detalles;
-        //Factura f=new Factura(001,c,
-        DetalleFactura d1 = new DetalleFactura(v, 1, 0);
+        //Factura f=new Factura(001,c,)
+        
+        /*DetalleFactura d1 = new DetalleFactura(v, 1, 0);
         DetalleFactura d2 = new DetalleFactura(v, 1, 0);
         DetalleFactura d3 = new DetalleFactura(v, 1, 0);
         DetalleFactura d4 = new DetalleFactura(v, 1, 0);
         DetalleFactura d5 = new DetalleFactura(v, 1, 0);
         DetalleFactura d6 = new DetalleFactura(v, 1, 0);
-        DetalleFactura d7 = new DetalleFactura(v, 1, 0);
+        DetalleFactura d7 = new DetalleFactura(v, 1, 0);*/
         
         String clientesFile = "./files/clientes.dat";
         //Archivos.writeClientes(clientesFile, clientes);
@@ -27,7 +28,7 @@ public class Principal {
 
         ArrayList<Factura> facturas = new ArrayList<Factura>();
 
-        facturas.add(new Factura("0001", c, detalles, f));
+    //ESTA LINEA VA SIN COMENTARIO   facturas.add(new Factura("0001", c, detalles, f));
         //Archivos.writeFacturas(facturasFile, generarFacturas());
         //ArrayList<Factura> facturas = Archivos.readFacturas(facturasFile);
 
@@ -70,6 +71,9 @@ public class Principal {
     }
 
     public static ArrayList<Factura> generarFacturas() {
+      ArrayList<Factura> facturas=new ArrayList<Factura>();
+      
+      facturas.add(new Factura("FAC001",new Fecha(10,11,18),new Cliente(1234,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"BAFJ701213SB10"),new ArrayList<DetalleFactura>()));
         /*TODO:
             Toma sintaxis de generar Autos
             20 objetos a generar
@@ -80,16 +84,38 @@ public class Principal {
             OJO: Descuento maximo = 0.30
             No pongas mas de 5 autos con descuento y que sean los modelos mas viejos
         */
-        return new ArrayList<Vendedor>();
+        return new ArrayList<Factura>();
     }
 
     public static ArrayList<Cliente> generarClientes() {
+        ArrayList<Cliente> clientes=new ArrayList<Cliente>();
+        clientes.add(new Cliente(1234,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"BAFJ701213SB10"));
+        clientes.add(new Cliente(4343,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"OIPF790205PT26"));
+        clientes.add(new Cliente(5454,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"MAHM670102NJ19"));
+        clientes.add(new Cliente(4344,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"CAGM640618JY29"));
+        clientes.add(new Cliente(6462,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"OLAL701201RK94"));
+        clientes.add(new Cliente(2321,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"ERER671120ET10"));
+        clientes.add(new Cliente(6742,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"SADD780812FH92"));
+        clientes.add(new Cliente(5454,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"CAHA811231YH89"));
+        clientes.add(new Cliente(5612,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"JIPA771012JN20"));
+        clientes.add(new Cliente(1012,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"FEJL800808LK99"));
+        clientes.add(new Cliente(0014,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"CAHA992310HA19"));
+        clientes.add(new Cliente(1494,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"DAFR563241JH10"));
+        clientes.add(new Cliente(8786,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"MAJU746372IL84"));
+        clientes.add(new Cliente(5123,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"ZAGE857273KG90"));
+        clientes.add(new Cliente(2432,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"JDUH656362IO12"));
+        clientes.add(new Cliente(5657,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"JFAA954889OL10"));
+        clientes.add(new Cliente(0101,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"ROGO847728IA23"));
+        clientes.add(new Cliente(2134,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"YFHD101023UH25"));
+        clientes.add(new Cliente(4533,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"OACR710101JA00"));
+        clientes.add(new Cliente(6162,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"DAFT893821DD10"));
+        
         /*TODO:
             Usa instrucciones de factura
             OJO: Busca RFCs en linea o algo asi o saca el de tu mama y modificalo
             pero que tenga la misma cantidad de caracteres
         */
-        return new ArrayList<Vendedor>();
+        return new ArrayList<Cliente>();
     }
 
     public static ArrayList<Vendedor> generarVendedores() {
