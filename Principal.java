@@ -111,7 +111,13 @@ public class Principal {
        vendedores.add(new Vendedor(1,new Nombre("Carlos","Ramos"),new Direccion("Calle 5 Oriente",212,"Adolfo Lopez Mateos","Santa Catarina",66366),new Fecha(15,6,12),11444,.06));
        vendedores.add(new Vendedor(1,new Nombre("Esteban","Madrid"),new Direccion("Adolfo Rios",122,"Nuevo Repueblo","Monterrey",61213),new Fecha(1,10,13),13564,.12));
        vendedores.add(new Vendedor(1,new Nombre("Luis","Gonzalez"),new Direccion("Noche buena",142,"Mision de las Villas","Santiago",66366),new Fecha(20,14,12),12514,.1));
-       vendedores.add(new Vendedor(1,new Nombre("Miguel","Juarez"),new Direccion("Rangel Frias",422,"Centro","Centro",66343),new Fecha(12,11,14),12344,.1));
+       vendedores.add(new Vendedor(1,new Nombre("Miguel","Juarez"),new Direccion("Rangel Frias",422,"Centro","Monterrey",66343),new Fecha(12,11,14),11244,.04));
+       vendedores.add(new Vendedor(1,new Nombre("Daniel","Vazquez"),new Direccion("Revolucion",522,"Col. Revolucion","Monterrey",65443),new Fecha(12,11,14),12744,.14));
+       vendedores.add(new Vendedor(1,new Nombre("Jairo","Velazquez"),new Direccion("Vasconcelos",122,"Col. Vasconcelos","San Pedro Garza Garcia",61212),new Fecha(6,4,12),12844,.05));
+       vendedores.add(new Vendedor(1,new Nombre("Sofia","Rodriguez"),new Direccion("Emiliano Zapata",422,"Col. Vasconcelos","San Pedro Garza Garcia",66343),new Fecha(5,2,12),12344,.2));
+       vendedores.add(new Vendedor(1,new Nombre("Martha","Sanchez"),new Direccion("Rangel Frias",122,"Centro","Monterrey",66343),new Fecha(12,4,12),15344,.01));
+       vendedores.add(new Vendedor(1,new Nombre("Fidel","Rueda"),new Direccion("Paseo Arbolado",214,"Paseo de la Huasteca","Santa Catarina",62133),new Fecha(12,6,15),12364,.12));
+
        
        /*TODO:
             Usa instrucciones de factura
