@@ -56,7 +56,7 @@ public class Factura {
 				"\n"+Texto.ajustarCaracteres(" ", 90)+"Folio: "+this.getFolio()+
 				"\n"+Archivos.getCliente(cliente).toString()+
 				"\n"+this.getEncabezado(11)+
-				"\n"+listToString(detalles)+
+				"\n"+listToString(Archivos.getDetalles(detalles))+
 				"\n\n"+Texto.ajustarCaracteres("", 115)+"Subtotal: "+dos.format(calcularSubtotalFactura())+
 				"\n"+Texto.ajustarCaracteres("", 115)+"IVA:      "+dos.format(calcularIVA())+
 				"\n"+Texto.ajustarCaracteres("", 115)+"Total:    "+dos.format(calcularTotalFactura());
@@ -84,8 +84,9 @@ public class Factura {
 	
 	public double calcularSubtotalFactura() {
 		double total = 0;
-		for(int i = 0; i < getDetalles().size(); i++) {
-			total += getDetalles().get(i).calcularTotal();
+		ArrayList<DetalleFactura> details = Archivos.getDetalles(detalles);
+		for(int i = 0; i < details.size(); i++) {
+			total += details.get(i).calcularTotal();
 		}
 		return total;
 	}
@@ -96,11 +97,6 @@ public class Factura {
 	
 	public double calcularTotalFactura() {
 		return calcularSubtotalFactura() + calcularIVA();
-	}
-	
-	public void agregarDetalle(DetalleFactura nuevo) {
-		if(getDetalles().size() == 0) return;
-		detalles.add(nuevo);
 	}
 	
 }

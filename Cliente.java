@@ -5,10 +5,14 @@ public class Cliente extends Persona implements Serializable {
    
     public Cliente(int ID, Nombre nombre, Direccion direccion, Fecha miembroDesde, String RFC) {
         super(ID, nombre, direccion, miembroDesde);
-        setRfc(rfc)
+        setRfc(rfc);
     }
 
-   public void setRFC(String rfc){
+    public Cliente() {
+        
+    }
+
+   public void setRfc(String rfc){
       this.rfc = rfc;
    }
    

@@ -1,12 +1,13 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Archivos implements Serializable {
 
     public static ArrayList<Factura> getFacturasMes(int mes) {
-        ArrayList<Factura> facturas;
+        ArrayList<Factura> facturas = new ArrayList<Factura>();
         try {
-            FileInputStream fis = new FileInputStream(filename);
+            FileInputStream fis = new FileInputStream("./files/facturas.dat");
             ObjectInputStream in = new ObjectInputStream(fis);
             Factura f = (Factura) in.readObject();
             while(f != null){
@@ -19,19 +20,17 @@ public class Archivos implements Serializable {
         }catch(FileNotFoundException e) {
         }catch(IOException e) {
         }
-        
+
         return facturas;
     }
 
-    public static Cliente getCliente(int id){
+    public static ArrayList<DetalleFactura> getDetalles(int id) {
+        ArrayList<DetalleFactura> detalles = new ArrayList<DetalleFactura>();
         try {
-            FileInputStream fis = new FileInputStream(filename);
+            FileInputStream fis = new FileInputStream("./files/detalles.dat");
             ObjectInputStream in = new ObjectInputStream(fis);
-            Cliente cliente = (Cliente) in.readObject();
-            while(cliente != null){
-                if(cliente.getIdPersona() == id) return cliente;
-                cliente = (Cliente) in.readObject();
-            }
+            HashMap<Integer, ArrayList<DetalleFactura>> mapa = (HashMap<Integer, ArrayList<DetalleFactura>>) in.readObject();
+            detalles = mapa.get(id);
             fis.close();
             in.close();
         }catch(ClassNotFoundException e){
@@ -39,35 +38,47 @@ public class Archivos implements Serializable {
         }catch(IOException e) {
         }
 
-        return null;
+        return detalles;
+    }
+
+    public static Cliente getCliente(int id){
+        Cliente c = new Cliente();
+        try {
+            FileInputStream fis = new FileInputStream("./files/clientes.dat");
+            ObjectInputStream in = new ObjectInputStream(fis);
+            HashMap<Integer, Cliente> clientes = (HashMap<Integer, Cliente>) in.readObject();
+            c = clientes.get(id);
+            fis.close();
+            in.close();
+        }catch(ClassNotFoundException e){
+        }catch(FileNotFoundException e) {
+        }catch(IOException e) {
+        }
+
+        return c;
     }
 
     public static Vehiculo getVehiculo(int id){
+        Vehiculo v = new Vehiculo();
         try {
-            FileInputStream fis = new FileInputStream(filename);
+            FileInputStream fis = new FileInputStream("./files/vehiculos.dat");
             ObjectInputStream in = new ObjectInputStream(fis);
-            Vehiculo vehiculo = (Vehiculo) in.readObject();
-            while(cliente != null){
-                if(vehiculo.getIdPersona() == id) return vehiculo;
-                vehiculo = (Vehiculo) in.readObject();
-            }
+            HashMap<Integer, Vehiculo> vehiculos = (HashMap<Integer, Vehiculo>) in.readObject();
+            v = vehiculos.get(id);
             fis.close();
             in.close();
         }catch(ClassNotFoundException e){
         }catch(FileNotFoundException e) {
         }catch(IOException e) {
         }
-
-        return null;
+        return v;
     }
 
-    public static void writeClientes(String filename, ArrayList<Cliente> clientes) {
+    public static void writeClientes(String filename, HashMap<String, Cliente> clientes) {
         try {
             ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(filename, true));
-            for(int i = 0; i < clientes.size(); i++){
-                o.writeObject(clientes.get(i));
-                o.close();
-            }
+            o.writeObject(clientes);
+            o.close();
         }catch (FileNotFoundException e) {
             e.printStackTrace();
         }catch (IOException e) {
@@ -104,13 +115,11 @@ public class Archivos implements Serializable {
     }
 
 
-    public static void writeVehiculos(String filename, ArrayList<Vehiculo> clientes) {
+    public static void writeVehiculos(String filename, HashMap<Integer, Vehiculo> vehiculo) {
         try {
             ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(filename, true));
-            for(int i = 0; i < clientes.size(); i++){
-                o.writeObject(clientes.get(i));
-                o.close();
-            }
+            o.writeObject(vehiculo);
+            o.close();
         }catch (FileNotFoundException e) {
             e.printStackTrace();
         }catch (IOException e) {

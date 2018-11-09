@@ -4,9 +4,13 @@ abstract class Producto implements Serializable{
 	protected double precio;
 	protected String nombre;	
 	
-	public Producto(double precio, String nombreProd) {
+	public Producto(double precio, String nombre) {
 		setPrecio(precio);
 		setNombre(nombre);
+	}
+
+	public Producto() {
+
 	}
 
 	public void setPrecio(double precio) {
@@ -18,15 +22,15 @@ abstract class Producto implements Serializable{
 	}
 
 	public void setNombre(String nombre){
-		this.nombre = nombre;	
+		this.nombre = nombre;
 	}
 	
 	public String getNombre(){
-		return nombre;
+		return this.nombre;
 	}
 
 	public String toString() {
-		return "\nNombre: "+getNombre()+"\nPrecio: "+getPrecio();
+		return "Nombre: "+getNombre()+"\nPrecio: "+getPrecio();
 	}
 
 }
