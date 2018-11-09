@@ -4,10 +4,10 @@ import java.text.*;
 public class Factura {
 	protected String folio;
 	protected int cliente;
-	protected ArrayList <DetalleFactura> detalles;
+	protected int detalles;
 	protected Fecha fecha;
 	
-	public Factura(String folio, Fecha fecha, int cliente, ArrayList<DetalleFactura> detalles) {
+	public Factura(String folio, Fecha fecha, int cliente, int detalles) {
 		setFolio(folio);
 		setCliente(cliente);
 		setDetalles(detalles);
@@ -34,11 +34,11 @@ public class Factura {
 		return cliente;
 	}
 	
-	public void setDetalles(ArrayList<DetalleFactura> detalles) {
+	public void setDetalles(int detalles) {
 		this.detalles = detalles;
 	}
 	
-	public ArrayList<DetalleFactura> getDetalles() {
+	public int getDetalles() {
 		return detalles;
 	}
 	

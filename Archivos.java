@@ -3,6 +3,26 @@ import java.util.ArrayList;
 
 public class Archivos implements Serializable {
 
+    public static ArrayList<Factura> getFacturasMes(int mes) {
+        ArrayList<Factura> facturas;
+        try {
+            FileInputStream fis = new FileInputStream(filename);
+            ObjectInputStream in = new ObjectInputStream(fis);
+            Factura f = (Factura) in.readObject();
+            while(f != null){
+                if(f.getFecha().getMes() == mes) facturas.add(f);
+                f = (Factura) in.readObject();
+            }
+            fis.close();
+            in.close();
+        }catch(ClassNotFoundException e){
+        }catch(FileNotFoundException e) {
+        }catch(IOException e) {
+        }
+        
+        return facturas;
+    }
+
     public static Cliente getCliente(int id){
         try {
             FileInputStream fis = new FileInputStream(filename);
