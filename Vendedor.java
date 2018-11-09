@@ -4,8 +4,8 @@ public class Vendedor extends Persona implements Serializable{
     private double salario;
     private double comision;
 
-    public Vendedor(final int ID, Nombre nombre, Direccion direccion, Fecha miembroDesde, double salario, double comision) {
-        super(ID, nombre, direccion, miembroDesde);
+    public Vendedor(int id, Nombre nombre, Direccion direccion, Fecha miembroDesde, double salario, double comision) {
+        super(id, nombre, direccion, miembroDesde);
         setSalario(salario);
         setComision(comision);
     }

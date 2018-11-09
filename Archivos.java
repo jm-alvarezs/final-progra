@@ -86,13 +86,11 @@ public class Archivos implements Serializable {
         }
     }
 
-    public static void writeFacturas(String filename, ArrayList<Factura> clientes) {
+    public static void writeFacturas(String filename, HashMap<Integer, Factura> facturas) {
         try {
             ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(filename, true));
-            for(int i = 0; i < clientes.size(); i++){
-                o.writeObject(clientes.get(i));
-                o.close();
-            }
+            o.writeObject(facturas);
+            o.close();
         }catch (FileNotFoundException e) {
             e.printStackTrace();
         }catch (IOException e) {
@@ -100,13 +98,11 @@ public class Archivos implements Serializable {
         }
     }
 
-    public static void writeVendedores(String filename, ArrayList<Vendedor> clientes) {
+    public static void writeVendedores(String filename, HashMap<Integer, Vendedor> vendedores) {
         try {
             ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(filename, true));
-            for(int i = 0; i < clientes.size(); i++){
-                o.writeObject(clientes.get(i));
-                o.close();
-            }
+            o.writeObject(vendedores);
+            o.close();
         }catch (FileNotFoundException e) {
             e.printStackTrace();
         }catch (IOException e) {
@@ -127,36 +123,24 @@ public class Archivos implements Serializable {
         }
     }
 
-    public static ArrayList<Cliente> readClientes(String filename) {
-        ArrayList<Cliente> arreglo = new ArrayList<Cliente>();
+    public static void writeDetalles(String filename, HashMap<Integer, ArrayList<DetalleFactura>> detalles) {
         try {
-            FileInputStream fis = new FileInputStream(filename);
-            ObjectInputStream in = new ObjectInputStream(fis);
-            Cliente a = (Cliente) in.readObject();
-            while(a != null){
-                arreglo.add(a);
-                a = (Cliente) in.readObject();
-            }
-            fis.close();
-            in.close();
-        }catch(ClassNotFoundException e){
-        }catch(FileNotFoundException e) {
-        }catch(IOException e) {
+            ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(filename, true));
+            o.writeObject(detalles);
+            o.close();
+        }catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }catch (IOException e) {
+            e.printStackTrace();
         }
-
-        return arreglo;
     }
 
-    public static ArrayList<Factura> readFacturas(String filename) {
-        ArrayList<Factura> arreglo = new ArrayList<Factura>();
+    public static HashMap<Integer, Cliente> readClientes(String filename) {
+        HashMap<Integer, Cliente> clientes = new HashMap<Integer, Cliente>();
         try {
             FileInputStream fis = new FileInputStream(filename);
             ObjectInputStream in = new ObjectInputStream(fis);
-            Factura a = (Factura) in.readObject();
-            while(a != null){
-                arreglo.add(a);
-                a = (Factura) in.readObject();
-            }
+            clientes = (HashMap<Integer, Cliente>) in.readObject();
             fis.close();
             in.close();
         }catch(ClassNotFoundException e){
@@ -164,19 +148,31 @@ public class Archivos implements Serializable {
         }catch(IOException e) {
         }
 
-        return arreglo;
+        return clientes;
+    }
+
+    public static HashMap<Integer, Factura> readFacturas(String filename) {
+        HashMap<Integer, Factura> facturas = new HashMap<Integer, Factura>();
+        try {
+            FileInputStream fis = new FileInputStream(filename);
+            ObjectInputStream in = new ObjectInputStream(fis);
+            facturas = (HashMap<Integer, Factura>) in.readObject();
+            fis.close();
+            in.close();
+        }catch(ClassNotFoundException e){
+        }catch(FileNotFoundException e) {
+        }catch(IOException e) {
+        }
+
+        return facturas;
     }
     
-    public static ArrayList<Vehiculo> readVehiculos(String filename) {
-        ArrayList<Vehiculo> arreglo = new ArrayList<Vehiculo>();
+    public static HashMap<Integer, Vehiculo> readVehiculos(String filename) {
+        HashMap<Integer, Vehiculo> vehiculos = new HashMap<Integer, Vehiculo>();
         try {
             FileInputStream fis = new FileInputStream(filename);
             ObjectInputStream in = new ObjectInputStream(fis);
-            Vehiculo a = (Vehiculo) in.readObject();
-            while(a != null){
-                arreglo.add(a);
-                a = (Vehiculo) in.readObject();
-            }
+            vehiculos = (HashMap<Integer, Vehiculo>) in.readObject();
             fis.close();
             in.close();
         }catch(ClassNotFoundException e){
@@ -184,20 +180,16 @@ public class Archivos implements Serializable {
         }catch(IOException e) {
         }
 
-        return arreglo;
+        return vehiculos;
     }
 
     
-    public static ArrayList<Vendedor> readVendedores(String filename) {
-        ArrayList<Vendedor> arreglo = new ArrayList<Vendedor>();
+    public static HashMap<Integer, Vendedor> readVendedores(String filename) {
+        HashMap<Integer, Vendedor> vendedores = new HashMap<Integer, Vendedor>();
         try {
             FileInputStream fis = new FileInputStream(filename);
             ObjectInputStream in = new ObjectInputStream(fis);
-            Vendedor a = (Vendedor) in.readObject();
-            while(a != null){
-                arreglo.add(a);
-                a = (Vendedor) in.readObject();
-            }
+            vendedores = (HashMap<Integer, Vendedor>) in.readObject();
             fis.close();
             in.close();
         }catch(ClassNotFoundException e){
@@ -205,7 +197,7 @@ public class Archivos implements Serializable {
         }catch(IOException e) {
         }
 
-        return arreglo;
+        return vendedores;
     }
 
 }

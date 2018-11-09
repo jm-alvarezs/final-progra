@@ -2,14 +2,16 @@ import java.util.*;
 import java.text.*;
 
 public class Factura {
-	protected String folio;
-	protected int cliente;
-	protected int detalles;
-	protected Fecha fecha;
+	private String folio;
+	private int cliente;
+	private int vendedor;
+	private int detalles;
+	private Fecha fecha;
 	
-	public Factura(String folio, Fecha fecha, int cliente, int detalles) {
+	public Factura(String folio, Fecha fecha, int cliente, int vendedor, int detalles) {
 		setFolio(folio);
 		setCliente(cliente);
+		setVendedor(vendedor);
 		setDetalles(detalles);
 		setFecha(fecha);
 	}
@@ -32,6 +34,14 @@ public class Factura {
 	
 	public int getCliente() {
 		return cliente;
+	}
+
+	public void setVendedor(int vendedor) {
+		this.vendedor = vendedor;
+	}
+
+	public int getVendedor() {
+		return vendedor;
 	}
 	
 	public void setDetalles(int detalles) {

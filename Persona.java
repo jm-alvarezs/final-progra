@@ -1,13 +1,13 @@
 import java.io.Serializable;
 
 public class Persona implements Serializable {
-    protected int idPersona;
+    protected int id;
     protected Nombre nombre;
     protected Direccion direccion;
     protected Fecha miembroDesde;
 
-    public Persona(int idPersona, Nombre nombre, Direccion direccion, Fecha miembroDesde) {
-        setIdPersona(idPersona);
+    public Persona(int id, Nombre nombre, Direccion direccion, Fecha miembroDesde) {
+        setId(id);
         setNombrePersona(nombre);
         setDireccion(direccion);
         setMiembroDesde(miembroDesde);
@@ -17,12 +17,12 @@ public class Persona implements Serializable {
         
     }
 
-    public void setIdPersona(int idPersona) {
-        this.idPersona = idPersona;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public int getIdPersona() {
-        return idPersona;
+    public int getId() {
+        return id;
     }
 
     public void setNombrePersona(Nombre nombre) {
@@ -50,6 +50,6 @@ public class Persona implements Serializable {
     }
 
     public String toString() {
-        return "ID: "+getIdPersona()+"\nNombre: "+getNombrePersona()+"\nDirección: "+getDireccion()+"\nMiembro Desde: "+getMiembroDesde();
+        return "Nombre: "+getNombrePersona()+"\nDirección: "+getDireccion()+"\nMiembro Desde: "+getMiembroDesde();
     }
 }
