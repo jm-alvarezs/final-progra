@@ -8,6 +8,10 @@ public class Cliente extends Persona implements Serializable {
         setRfc(rfc);
     }
 
+    public Cliente() {
+        
+    }
+
    public void setRfc(String rfc){
       this.rfc = rfc;
    }

@@ -33,7 +33,7 @@ class DetalleFactura {
 		this.producto = producto;
 	}
 	
-	public Producto getProducto() {
+	public int getProducto() {
 		return producto;
 	}
 	
@@ -54,7 +54,7 @@ class DetalleFactura {
 	}
 	
 	public double getImporte() {
-		return getCant() * getProducto().getPrecio();
+		return getCant() * Archivos.getVehiculo(producto).getPrecio();
 	}
 	
 	public double calcularSubtotal() {

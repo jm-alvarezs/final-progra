@@ -13,6 +13,10 @@ public class Persona implements Serializable {
         setMiembroDesde(miembroDesde);
     }
 
+    public Persona() {
+        
+    }
+
     public void setIdPersona(int idPersona) {
         this.idPersona = idPersona;
     }
