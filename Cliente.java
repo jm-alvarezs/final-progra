@@ -3,12 +3,12 @@ import java.io.Serializable;
 public class Cliente extends Persona implements Serializable {
    String rfc;
    
-    public Cliente(int ID, Nombre nombre, Direccion direccion, Fecha miembroDesde, String RFC) {
+    public Cliente(int ID, Nombre nombre, Direccion direccion, Fecha miembroDesde, String rfc) {
         super(ID, nombre, direccion, miembroDesde);
-        setRfc(rfc)
+        setRfc(rfc);
     }
 
-   public void setRFC(String rfc){
+   public void setRfc(String rfc){
       this.rfc = rfc;
    }
    

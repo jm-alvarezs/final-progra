@@ -84,39 +84,39 @@ public class Principal {
     }
 
     public static ArrayList<Cliente> generarClientes() {
-        /*
-            TODO:
-            Cambiar los nombres de los clientes
-        */
+
         ArrayList<Cliente> clientes=new ArrayList<Cliente>();
         clientes.add(new Cliente(1234,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"BAFJ701213SB10"));
-        clientes.add(new Cliente(4343,new Nombre("Luis","Doriz"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"OIPF790205PT26"));
-        clientes.add(new Cliente(5454,new Nombre("Cesar","García"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"MAHM670102NJ19"));
-        clientes.add(new Cliente(4344,new Nombre("Roberto","Montemayor"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"CAGM640618JY29"));
-        clientes.add(new Cliente(6462,new Nombre("Fernando","Zablah"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"OLAL701201RK94"));
-        clientes.add(new Cliente(2321,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"ERER671120ET10"));
-        clientes.add(new Cliente(6742,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"SADD780812FH92"));
-        clientes.add(new Cliente(5454,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"CAHA811231YH89"));
-        clientes.add(new Cliente(5612,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"JIPA771012JN20"));
-        clientes.add(new Cliente(1012,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"FEJL800808LK99"));
-        clientes.add(new Cliente(0014,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"CAHA992310HA19"));
-        clientes.add(new Cliente(1494,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"DAFR563241JH10"));
-        clientes.add(new Cliente(8786,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"MAJU746372IL84"));
-        clientes.add(new Cliente(5123,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"ZAGE857273KG90"));
-        clientes.add(new Cliente(2432,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"JDUH656362IO12"));
-        clientes.add(new Cliente(5657,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"JFAA954889OL10"));
-        clientes.add(new Cliente(0101,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"ROGO847728IA23"));
-        clientes.add(new Cliente(2134,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"YFHD101023UH25"));
-        clientes.add(new Cliente(4533,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"OACR710101JA00"));
-        clientes.add(new Cliente(6162,new Nombre("Orlando","Torres"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"DAFT893821DD10"));
+        clientes.add(new Cliente(4343,new Nombre("Luis","Doriz"),new Direccion("Miguel Hidalgo",501,"Colonia Centro","Monterrey",65454),new Fecha(10,11,18),"OIPF790205PT26"));
+        clientes.add(new Cliente(5454,new Nombre("Cesar","Garcia"),new Direccion("Jose Maria Morelos",652,"Col. Reforma","Monterrey",67574),new Fecha(13,10,17),"MAHM670102NJ19"));
+        clientes.add(new Cliente(4344,new Nombre("Roberto","Montemayor"),new Direccion("Agustin Iturbide",112,"Col. Centro","Santa Catarina",66368),new Fecha(7,11,18),"CAGM640618JY29"));
+        clientes.add(new Cliente(6462,new Nombre("Fernando","Zablah"),new Direccion("Padre Mier",154,"Heroes","Monterrey",66375),new Fecha(30,7,18),"OLAL701201RK94"));
+        clientes.add(new Cliente(2321,new Nombre("Jonathan","Nunez"),new Direccion("Benito Juarez",112,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,11,18),"ERER671120ET10"));
+        clientes.add(new Cliente(6742,new Nombre("Lisa","Gonzalez"),new Direccion("Porfirio Diaz",162,"Col. Reforma","Monterrey",32321),new Fecha(4,11,17),"SADD780812FH92"));
+        clientes.add(new Cliente(5454,new Nombre("Kenia","Castro"),new Direccion("Paseo de la Huasteca",292,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(20,8,18),"CAHA811231YH89"));
+        clientes.add(new Cliente(5612,new Nombre("Andres","Aldape"),new Direccion("Ninos Heroes",153,"Col. Ninos Heroes","Monterrey",66322),new Fecha(12,11,15),"JIPA771012JN20"));
+        clientes.add(new Cliente(1012,new Nombre("Juan","Alvarez"),new Direccion("Morones Prieto",542,"Col. San Pedro","San Pedro Garza Garcia",66232),new Fecha(10,6,18),"FEJL800808LK99"));
+        clientes.add(new Cliente(0014,new Nombre("Bernardo","Cardenas"),new Direccion("Santa Catarina",512,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(11,11,11),"CAHA992310HA19"));
+        clientes.add(new Cliente(1494,new Nombre("Daniel","Ramirez"),new Direccion("Paseo de la M",765,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,9,16),"DAFR563241JH10"));
+        clientes.add(new Cliente(8786,new Nombre("Francisco","Bermudez"),new Direccion("Leyes de Reforma",232,"Col. Reforma","Monterrey",62321),new Fecha(2,11,18),"MAJU746372IL84"));
+        clientes.add(new Cliente(5123,new Nombre("Leobardo","Lozano"),new Direccion("Paseo de la M",132,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(12,4,16),"ZAGE857273KG90"));
+        clientes.add(new Cliente(2432,new Nombre("Alexia","Garcia"),new Direccion("Paseo de la M",112,"Vision de la Huasteca","Santa Catarina",66369),new Fecha(15,11,18),"JDUH656362IO12"));
+
         return clientes;
     }
 
     public static ArrayList<Vendedor> generarVendedores() {
-        /*TODO:
+       ArrayList<Vendedor> vendedores=new ArrayList<Vendedor>();
+       vendedores.add(new Vendedor(1,new Nombre("Juan","Mejia"),new Direccion("Calle 2 Oriente",102,"Adolfo Lopez Mateos","Santa Catarina",66366),new Fecha(10,10,10),12344,.1));
+       vendedores.add(new Vendedor(1,new Nombre("Carlos","Ramos"),new Direccion("Calle 5 Oriente",212,"Adolfo Lopez Mateos","Santa Catarina",66366),new Fecha(15,6,12),11444,.06));
+       vendedores.add(new Vendedor(1,new Nombre("Esteban","Madrid"),new Direccion("Adolfo Rios",122,"Nuevo Repueblo","Monterrey",61213),new Fecha(1,10,13),13564,.12));
+       vendedores.add(new Vendedor(1,new Nombre("Luis","Gonzalez"),new Direccion("Noche buena",142,"Mision de las Villas","Santiago",66366),new Fecha(20,14,12),12514,.1));
+       vendedores.add(new Vendedor(1,new Nombre("Miguel","Juarez"),new Direccion("Rangel Frias",422,"Centro","Centro",66343),new Fecha(12,11,14),12344,.1));
+       
+       /*TODO:
             Usa instrucciones de factura
             OJO: comisión máxima = 0.2 solo para 5 vendedores, los demas con 0.1 o 0.15
         */
-        return new ArrayList<Vendedor>();
+        return vendedores;
     }
 }
