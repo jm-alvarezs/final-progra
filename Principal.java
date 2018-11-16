@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class Principal {
     public static void main(String args[]) {
-        
+    
         String clientesFile = "./files/clientes.dat";
         //Archivos.writeClientes(clientesFile, Datos.generarClientes());
         //HashMap<Integer, Cliente> clientes = Archivos.readClientes(clientesFile);
@@ -14,8 +14,7 @@ public class Principal {
         //HashMap<Integer, Factura> facturas = Archivos.readFacturas(facturasFile);
 
         String vehiculosFile = "./files/vehiculos.dat";
-        //Archivos.writeVehiculos(vehiculosFile, generarVehiculos());
-        //System.out.print(Archivos.getVehiculo(3));
+        //Archivos.writeVehiculos(vehiculosFile, Datos.generarVehiculos());
 
         String vendedoresFile = "./files/vendedores.dat";
         //Archivos.writeVendedores(vendedoresFile, Datos.generarVendedores());
@@ -24,6 +23,14 @@ public class Principal {
         String detallesFile = "./files/detalles.dat";
         //Archivos.writeDetalles(detallesFile, Datos.generarDetalles());
         //HashMap<Integer, ArrayList<DetalleFactura>> detalles = Archivos.readDetalles(detallesFile);
+
+        System.out.println(Archivos.getDetalles());
+
+        //System.out.println(new Factura("FAC001", new Fecha(10,11,18), 4343, 1202, 1));
+    }
+
+    public static void imprimirFactura(String folio) {
+
     }
 
 }

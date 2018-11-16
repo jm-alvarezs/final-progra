@@ -41,6 +41,22 @@ public class Archivos implements Serializable {
         return detalles;
     }
 
+    public static HashMap<Integer, ArrayList<DetalleFactura>> getDetalles() {
+        HashMap<Integer, ArrayList<DetalleFactura>> mapa = new HashMap<Integer, ArrayList<DetalleFactura>>();
+        try {
+            FileInputStream fis = new FileInputStream("./files/detalles.dat");
+            ObjectInputStream in = new ObjectInputStream(fis);
+            mapa = (HashMap<Integer, ArrayList<DetalleFactura>>) in.readObject();            
+            fis.close();
+            in.close();
+        }catch(ClassNotFoundException e){
+        }catch(FileNotFoundException e) {
+        }catch(IOException e) {
+        }
+
+        return mapa;
+    }
+
     public static Cliente getCliente(int id){
         Cliente c = new Cliente();
         try {
@@ -74,7 +90,7 @@ public class Archivos implements Serializable {
         return v;
     }
 
-    public static void writeClientes(String filename, HashMap<String, Cliente> clientes) {
+    public static void writeClientes(String filename, HashMap<Integer, Cliente> clientes) {
         try {
             ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(filename, true));
             o.writeObject(clientes);
@@ -86,7 +102,7 @@ public class Archivos implements Serializable {
         }
     }
 
-    public static void writeFacturas(String filename, HashMap<Integer, Factura> facturas) {
+    public static void writeFacturas(String filename, ArrayList<Factura> facturas) {
         try {
             ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(filename, true));
             o.writeObject(facturas);

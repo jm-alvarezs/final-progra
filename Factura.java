@@ -1,7 +1,8 @@
 import java.util.*;
+import java.io.Serializable;
 import java.text.*;
 
-public class Factura {
+public class Factura implements Serializable {
 	private String folio;
 	private int cliente;
 	private int vendedor;
@@ -66,7 +67,7 @@ public class Factura {
 				"\n"+Texto.ajustarCaracteres(" ", 90)+"Folio: "+this.getFolio()+
 				"\n"+Archivos.getCliente(cliente).toString()+
 				"\n"+this.getEncabezado(11)+
-				"\n"+listToString(Archivos.getDetalles(detalles))+
+				"\n"+Archivos.getDetalles(detalles).toString()+
 				"\n\n"+Texto.ajustarCaracteres("", 115)+"Subtotal: "+dos.format(calcularSubtotalFactura())+
 				"\n"+Texto.ajustarCaracteres("", 115)+"IVA:      "+dos.format(calcularIVA())+
 				"\n"+Texto.ajustarCaracteres("", 115)+"Total:    "+dos.format(calcularTotalFactura());

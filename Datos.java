@@ -5,26 +5,26 @@ public class Datos {
 
     public static HashMap<Integer, Vehiculo> generarVehiculos() {
         HashMap<Integer, Vehiculo> vehiculos = new HashMap<Integer, Vehiculo>();
-        vehiculos.put(1, new Vehiculo(560699, "C", "WDB1260251A336981", "rojo", "200", 2017, 5));
-        vehiculos.put(2, new Vehiculo(525600, "C", "WDB1260251A336961", "negro", "180", 2018, 5));
-        vehiculos.put(3, new Vehiculo(735230, "E", "WDB1260251A336951", "azul", "300", 2018, 5));
-        vehiculos.put(4, new Vehiculo(2100800, "S", "WDB1260251A336941", "blanco", "550", 2017, 4));
-        vehiculos.put(5, new Vehiculo(1350650, "GLE", "WDB1260251A336931", "negro", "350", 2016, 7));
-        vehiculos.put(6, new Vehiculo(2230500, "G", "WDB1260251A336921", "gris", "500", 2015, 5));
-        vehiculos.put(7, new Vehiculo(1850690, "E", "WDB1260251A336911", "gris", "63 AMG", 2018, 5));
-        vehiculos.put(8, new Vehiculo(1130260, "A", "WDB1260251A336912", "blanco", "45 AMG", 2019, 4));
-        vehiculos.put(9, new Vehiculo(1650380, "SLC", "WDB1260251A336922", "gris", "43 AMG", 2018, 2));
-        vehiculos.put(10, new Vehiculo(780650, "E", "WDB1260251A336932", "azul", "350", 2017, 5));
-        vehiculos.put(11, new Vehiculo(860530, "GLC", "WDB1260251A336942", "negro", "250", 2017, 5));
-        vehiculos.put(12, new Vehiculo(2130620, "SL", "WDB1260251A336952", "rojo", "500", 2018, 2));
-        vehiculos.put(13, new Vehiculo(1652390, "C", "WDB1260251A336962", "rojo", "63 AMG", 2019, 5));
-        vehiculos.put(14, new Vehiculo(790630, "CLS", "WDB1260251A336972", "pantera", "500", 2017, 4));
-        vehiculos.put(15, new Vehiculo(780650, "E", "WDB1260251A336982", "negro", "350", 2019, 5));
-        vehiculos.put(16, new Vehiculo(430250, "A", "WDB1260251A336992", "gris", "180", 2018, 4));
-        vehiculos.put(17, new Vehiculo(460250, "GLA", "WDB1260251A336993", "blanco", "250", 2018, 4));
-        vehiculos.put(18, new Vehiculo(1960380, "GLS", "WDB1260251A336983", "plata", "350", 2018, 8));
-        vehiculos.put(19, new Vehiculo(2225600, "S", "WDB1260251A336973", "negro", "550", 2019, 4));
-        vehiculos.put(20, new Vehiculo(480560, "CLA", "WDB1260251A336963", "gris", "250", 2019, 4));
+        vehiculos.put(1, new Vehiculo(1, 560699, "C", "WDB1260251A336981", "rojo", "200", 2017, 5));
+        vehiculos.put(2, new Vehiculo(2, 525600, "C", "WDB1260251A336961", "negro", "180", 2018, 5));
+        vehiculos.put(3, new Vehiculo(3, 735230, "E", "WDB1260251A336951", "azul", "300", 2018, 5));
+        vehiculos.put(4, new Vehiculo(4, 2100800, "S", "WDB1260251A336941", "blanco", "550", 2017, 4));
+        vehiculos.put(5, new Vehiculo(5, 1350650, "GLE", "WDB1260251A336931", "negro", "350", 2016, 7));
+        vehiculos.put(6, new Vehiculo(6, 2230500, "G", "WDB1260251A336921", "gris", "500", 2015, 5));
+        vehiculos.put(7, new Vehiculo(7, 1850690, "E", "WDB1260251A336911", "gris", "63 AMG", 2018, 5));
+        vehiculos.put(8, new Vehiculo(8, 1130260, "A", "WDB1260251A336912", "blanco", "45 AMG", 2019, 4));
+        vehiculos.put(9, new Vehiculo(9, 1650380, "SLC", "WDB1260251A336922", "gris", "43 AMG", 2018, 2));
+        vehiculos.put(10, new Vehiculo(10, 780650, "E", "WDB1260251A336932", "azul", "350", 2017, 5));
+        vehiculos.put(11, new Vehiculo(11, 860530, "GLC", "WDB1260251A336942", "negro", "250", 2017, 5));
+        vehiculos.put(12, new Vehiculo(12, 2130620, "SL", "WDB1260251A336952", "rojo", "500", 2018, 2));
+        vehiculos.put(13, new Vehiculo(13, 1652390, "C", "WDB1260251A336962", "rojo", "63 AMG", 2019, 5));
+        vehiculos.put(14, new Vehiculo(14, 790630, "CLS", "WDB1260251A336972", "pantera", "500", 2017, 4));
+        vehiculos.put(15, new Vehiculo(15, 780650, "E", "WDB1260251A336982", "negro", "350", 2019, 5));
+        vehiculos.put(16, new Vehiculo(16, 430250, "A", "WDB1260251A336992", "gris", "180", 2018, 4));
+        vehiculos.put(17, new Vehiculo(17, 460250, "GLA", "WDB1260251A336993", "blanco", "250", 2018, 4));
+        vehiculos.put(18, new Vehiculo(18, 1960380, "GLS", "WDB1260251A336983", "plata", "350", 2018, 8));
+        vehiculos.put(19, new Vehiculo(19, 2225600, "S", "WDB1260251A336973", "negro", "550", 2019, 4));
+        vehiculos.put(20, new Vehiculo(20, 480560, "CLA", "WDB1260251A336963", "gris", "250", 2019, 4));
         return vehiculos;
     }
 
@@ -58,16 +58,16 @@ public class Datos {
         return detalles;
     }
 
-    public static HashMap<Integer, Factura> generarFacturas() {
-        HashMap<Integer, Factura> facturas = new HashMap<Integer, Factura>();
-        facturas.put(1, new Factura("FAC001", new Fecha(10,11,18), 4343, 1202, 1));
-        facturas.put(2, new Factura("FAC002", new Fecha(10,11,18), 5644, 1203, 2));
-        facturas.put(3, new Factura("FAC003", new Fecha(10,11,18), 4344, 1202, 3));
-        facturas.put(4, new Factura("FAC004", new Fecha(10,11,18), 6462, 1201, 4));
-        facturas.put(5, new Factura("FAC005", new Fecha(10,11,18), 1234, 1206, 5));
-        facturas.put(6, new Factura("FAC006", new Fecha(10,11,18), 5454, 1205, 6));
-        facturas.put(7, new Factura("FAC007", new Fecha(10,11,18), 1494, 1202, 7));
-        facturas.put(8, new Factura("FAC008", new Fecha(10,11,18), 1012, 1201, 8));
+    public static ArrayList<Factura> generarFacturas() {
+        ArrayList<Factura> facturas = new ArrayList<Factura>();
+        facturas.add(new Factura("FAC001", new Fecha(10,11,18), 4343, 1202, 1));
+        facturas.add(new Factura("FAC002", new Fecha(10,11,18), 5644, 1203, 2));
+        facturas.add(new Factura("FAC003", new Fecha(10,11,18), 4344, 1202, 3));
+        facturas.add(new Factura("FAC004", new Fecha(10,11,18), 6462, 1201, 4));
+        facturas.add(new Factura("FAC005", new Fecha(10,11,18), 1234, 1206, 5));
+        facturas.add(new Factura("FAC006", new Fecha(10,11,18), 5454, 1205, 6));
+        facturas.add(new Factura("FAC007", new Fecha(10,11,18), 1494, 1202, 7));
+        facturas.add(new Factura("FAC008", new Fecha(10,11,18), 1012, 1201, 8));
         return facturas;
     }
 

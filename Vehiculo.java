@@ -7,8 +7,8 @@ public class Vehiculo extends Producto implements Serializable{
 	private int modelo;
 	private int pasajeros;
 		
-	public Vehiculo(double precio, String nombre, String vin, String color, String motor, int modelo, int pasajeros){
-		super(precio, nombre.concat(motor));
+	public Vehiculo(int idProd, double precio, String nombre, String vin, String color, String motor, int modelo, int pasajeros){
+		super(idProd, precio, nombre.concat(motor));
 		setVin(vin);
 		setColor(color);
 		setMotor(motor);

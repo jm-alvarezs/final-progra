@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.text.*;
 
-class DetalleFactura {
+class DetalleFactura implements Serializable {
 	int producto;
 	int cant;
 	double descuento;
