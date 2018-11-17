@@ -6,22 +6,24 @@ public class Archivos implements Serializable {
 
     public static ArrayList<Factura> getFacturasMes(int mes) {
         ArrayList<Factura> facturas = new ArrayList<Factura>();
+        ArrayList<Factura> facturasMes = new ArrayList<Factura>();
         try {
             FileInputStream fis = new FileInputStream("./files/facturas.dat");
             ObjectInputStream in = new ObjectInputStream(fis);
-            Factura f = (Factura) in.readObject();
-            while(f != null){
-                if(f.getFecha().getMes() == mes) facturas.add(f);
-                f = (Factura) in.readObject();
-            }
+            facturas = (ArrayList<Factura>) in.readObject();
             fis.close();
             in.close();
+            for(int i = 0; i < facturas.size(); i++){
+                if(facturas.get(i).getFecha().getMes() == mes) {
+                    facturasMes.add(facturas.get(i));
+                }
+            }
         }catch(ClassNotFoundException e){
         }catch(FileNotFoundException e) {
         }catch(IOException e) {
         }
 
-        return facturas;
+        return facturasMes;
     }
 
     public static ArrayList<DetalleFactura> getDetalles(int id) {

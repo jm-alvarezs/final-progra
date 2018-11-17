@@ -61,13 +61,13 @@ public class Datos {
     public static ArrayList<Factura> generarFacturas() {
         ArrayList<Factura> facturas = new ArrayList<Factura>();
         facturas.add(new Factura("FAC001", new Fecha(10,11,18), 4343, 1202, 1));
-        facturas.add(new Factura("FAC002", new Fecha(10,11,18), 5644, 1203, 2));
-        facturas.add(new Factura("FAC003", new Fecha(10,11,18), 4344, 1202, 3));
-        facturas.add(new Factura("FAC004", new Fecha(10,11,18), 6462, 1201, 4));
-        facturas.add(new Factura("FAC005", new Fecha(10,11,18), 1234, 1206, 5));
-        facturas.add(new Factura("FAC006", new Fecha(10,11,18), 5454, 1205, 6));
-        facturas.add(new Factura("FAC007", new Fecha(10,11,18), 1494, 1202, 7));
-        facturas.add(new Factura("FAC008", new Fecha(10,11,18), 1012, 1201, 8));
+        facturas.add(new Factura("FAC002", new Fecha(9,10,18), 5644, 1203, 2));
+        facturas.add(new Factura("FAC003", new Fecha(17,11,18), 4344, 1202, 3));
+        facturas.add(new Factura("FAC004", new Fecha(7,11,18), 6462, 1201, 4));
+        facturas.add(new Factura("FAC005", new Fecha(15,9,18), 1234, 1206, 5));
+        facturas.add(new Factura("FAC006", new Fecha(10,5,18), 5454, 1205, 6));
+        facturas.add(new Factura("FAC007", new Fecha(27,10,18), 1494, 1202, 7));
+        facturas.add(new Factura("FAC008", new Fecha(2,11,18), 1012, 1201, 8));
         return facturas;
     }
 
