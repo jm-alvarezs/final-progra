@@ -24,12 +24,7 @@ public class Principal {
         //Archivos.writeDetalles(detallesFile, Datos.generarDetalles());
         //HashMap<Integer, ArrayList<DetalleFactura>> detalles = Archivos.readDetalles(detallesFile);
 
-        System.out.println(Archivos.getDetalles());
-
-        //System.out.println(new Factura("FAC001", new Fecha(10,11,18), 4343, 1202, 1));
-    }
-
-    public static void imprimirFactura(String folio) {
+        System.out.println(new Factura("FAC001", new Fecha(10,11,18), 4343, 1202, 1));
 
     }
 

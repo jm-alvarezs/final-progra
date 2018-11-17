@@ -32,19 +32,19 @@ public class Datos {
         ArrayList<DetalleFactura> d1 = new ArrayList<DetalleFactura>();
         d1.add(new DetalleFactura(15, 1));
         ArrayList<DetalleFactura> d2 = new ArrayList<DetalleFactura>();
-        d1.add(new DetalleFactura(3, 1));
+        d2.add(new DetalleFactura(3, 1));
         ArrayList<DetalleFactura> d3 = new ArrayList<DetalleFactura>();
-        d1.add(new DetalleFactura(8, 1));
+        d3.add(new DetalleFactura(8, 1));
         ArrayList<DetalleFactura> d4 = new ArrayList<DetalleFactura>();
-        d1.add(new DetalleFactura(5, 1));
+        d4.add(new DetalleFactura(5, 1));
         ArrayList<DetalleFactura> d5 = new ArrayList<DetalleFactura>();
-        d1.add(new DetalleFactura(12, 1));
+        d5.add(new DetalleFactura(12, 1));
         ArrayList<DetalleFactura> d6 = new ArrayList<DetalleFactura>();
-        d1.add(new DetalleFactura(19, 1));
+        d6.add(new DetalleFactura(19, 1));
         ArrayList<DetalleFactura> d7 = new ArrayList<DetalleFactura>();
-        d1.add(new DetalleFactura(6, 1));
+        d7.add(new DetalleFactura(6, 1));
         ArrayList<DetalleFactura> d8 = new ArrayList<DetalleFactura>();
-        d1.add(new DetalleFactura(1, 1));
+        d8.add(new DetalleFactura(1, 1));
         
         HashMap<Integer, ArrayList<DetalleFactura>> detalles = new HashMap<Integer, ArrayList<DetalleFactura>>();
         detalles.put(1, d1);
