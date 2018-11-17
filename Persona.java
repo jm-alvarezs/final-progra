@@ -50,6 +50,6 @@ public class Persona implements Serializable {
     }
 
     public String toString() {
-        return "Nombre: "+getNombrePersona()+"\nDirección: "+getDireccion()+"\nMiembro Desde: "+getMiembroDesde();
+        return "Nombre: "+getNombrePersona()+"\nDireccion: "+getDireccion()+"\nMiembro Desde: "+getMiembroDesde();
     }
 }

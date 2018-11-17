@@ -20,14 +20,15 @@ class DetalleFactura implements Serializable {
 	
 	public String toString() {
 		DecimalFormat dos = new DecimalFormat("0.00");
-		int size = 10;
+		int size = 9;
+		Vehiculo vehiculo = Archivos.getVehiculo(producto);
 		return Texto.ajustarCaracteres(Integer.toString(getCant()), size)+" | "+
-			Texto.ajustarCaracteres(Archivos.getVehiculo(producto).getNombre(), size)+" | "+
-			Texto.ajustarCaracteres(Double.toString(Archivos.getVehiculo(producto).getPrecio()), size)+" | "+
-			Texto.ajustarCaracteres(Double.toString(this.getImporte()), size)+" | "+
-			Texto.ajustarCaracteres(Double.toString(this.getDescuento()), size)+" | "+
-			Texto.ajustarCaracteres(Double.toString(this.calcularSubtotal()), size)+" | "+
-			Texto.ajustarCaracteres(dos.format(this.calcularIVA()), size);
+			Texto.ajustarCaracteres(vehiculo.getNombre(), size+1)+" | "+
+			Texto.ajustarCaracteres(Integer.toString(vehiculo.getModelo()), size+2)+" | "+
+			Texto.ajustarCaracteres(vehiculo.getMotor(), size+2)+" | "+
+			Texto.ajustarCaracteres(Double.toString(vehiculo.getPrecio()), size+1)+" | "+
+			Texto.ajustarCaracteres(Double.toString(this.getDescuento()), size+1)+" | "+
+			Texto.ajustarCaracteres(dos.format(this.calcularIVA()), size+1);
 	}
 	
 	public void setProducto(int producto) {

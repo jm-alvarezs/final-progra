@@ -82,15 +82,13 @@ public class Factura implements Serializable {
 	}
 	
 	public String getEncabezado(int size) {
-		return Texto.ajustarCaracteres("Clave", size)+"| "+
-				Texto.ajustarCaracteres("Cantidad", size)+"| "+
-				Texto.ajustarCaracteres("Unidad", size)+" | "+
-				Texto.ajustarCaracteres("Descripción", 30)+" | "+
+		return Texto.ajustarCaracteres("[Clave", size)+"| "+
+				Texto.ajustarCaracteres("Vehiculo", size)+"| "+
+				Texto.ajustarCaracteres("Modelo", size)+" | "+
+				Texto.ajustarCaracteres("Motor", size)+" | "+
 				Texto.ajustarCaracteres("Precio", size)+"| "+
-				Texto.ajustarCaracteres("Importe", size)+"| "+
 				Texto.ajustarCaracteres("Descuento", size)+"| "+
-				Texto.ajustarCaracteres("Base", size)+"| "+
-				Texto.ajustarCaracteres("IVA", size-1)+"";
+				Texto.ajustarCaracteres("IVA", size-1)+"]";
 	}
 	
 	public double calcularSubtotalFactura() {
