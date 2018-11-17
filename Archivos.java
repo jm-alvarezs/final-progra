@@ -4,6 +4,16 @@ import java.util.HashMap;
 
 public class Archivos implements Serializable {
 
+    public static double getVentasMensuales(int mes) {
+        ArrayList<Factura> facturasMes = getFacturasMes(mes);
+        double total = 0;
+        for(int i = 0; i  < facturasMes.size(); i++){
+            total += facturasMes.get(i).calcularTotalFactura();
+        }
+        return total;
+
+    }
+
     public static ArrayList<Factura> getFacturasMes(int mes) {
         ArrayList<Factura> facturas = new ArrayList<Factura>();
         ArrayList<Factura> facturasMes = new ArrayList<Factura>();

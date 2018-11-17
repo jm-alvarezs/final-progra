@@ -1,4 +1,5 @@
 import java.io.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -24,7 +25,14 @@ public class Principal {
         //Archivos.writeDetalles(detallesFile, Datos.generarDetalles());
         //HashMap<Integer, ArrayList<DetalleFactura>> detalles = Archivos.readDetalles(detallesFile);
 
-        System.out.println(Archivos.getFacturasMes(11));
+        System.out.println(getVentasMensuales(11));
+    }
+    
+    public static String getVentasMensuales(int mes) {
+        double total = Archivos.getVentasMensuales(mes);
+        DecimalFormat dos = new DecimalFormat("0.00");
+        return "Ventas del Mes "+mes+" = "+dos.format(total);
+
     }
 
 }
