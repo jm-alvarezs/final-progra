@@ -11,7 +11,7 @@ public class Principal {
         //HashMap<Integer, Cliente> clientes = Archivos.readClientes(clientesFile);
         
         String facturasFile = "./files/facturas.dat";
-        Archivos.writeFacturas(facturasFile, Datos.generarFacturas());
+        //Archivos.writeFacturas(facturasFile, Datos.generarFacturas());
         //HashMap<Integer, Factura> facturas = Archivos.readFacturas(facturasFile);
 
         String vehiculosFile = "./files/vehiculos.dat";
@@ -24,8 +24,6 @@ public class Principal {
         String detallesFile = "./files/detalles.dat";
         //Archivos.writeDetalles(detallesFile, Datos.generarDetalles());
         //HashMap<Integer, ArrayList<DetalleFactura>> detalles = Archivos.readDetalles(detallesFile);
-
-        System.out.println(getAutosModelo(2018, vehiculosFile));
 
     }
     
