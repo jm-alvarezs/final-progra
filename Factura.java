@@ -107,5 +107,29 @@ public class Factura implements Serializable {
 	public double calcularTotalFactura() {
 		return calcularSubtotalFactura() + calcularIVA();
 	}
+
+	public static Comparator<Factura> folioAsc = new Comparator<Factura>() {
+		public int compare(Factura f1, Factura f2) {
+			return f1.getFolio().compareTo(f2.getFolio());
+		}
+	};
+
+	public static Comparator<Factura> folioDesc = new Comparator<Factura>() {
+		public int compare(Factura f1, Factura f2) {
+			return f2.getFolio().compareTo(f1.getFolio());
+		}
+	};
+
+	public static Comparator<Factura> fechaAsc = new Comparator<Factura>() {
+		public int compare(Factura f1, Factura f2) {
+			return f1.getFecha().toString().compareTo(f2.getFecha().toString());
+		}
+	};
+
+	public static Comparator<Factura> fechaDesc = new Comparator<Factura>() {
+		public int compare(Factura f1, Factura f2) {
+			return f2.getFecha().toString().compareTo(f1.getFecha().toString());
+		}
+	};
 	
 }

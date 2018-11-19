@@ -4,8 +4,8 @@ import java.util.HashMap;
 
 public class Archivos implements Serializable {
 
-    public static double getVentasMensuales(int mes) {
-        ArrayList<Factura> facturasMes = getFacturasMes(mes);
+    public static double getVentasMensuales(String filename, int mes) {
+        ArrayList<Factura> facturasMes = getFacturasMes(filename, mes);
         double total = 0;
         for(int i = 0; i  < facturasMes.size(); i++){
             total += facturasMes.get(i).calcularTotalFactura();
@@ -14,25 +14,14 @@ public class Archivos implements Serializable {
 
     }
 
-    public static ArrayList<Factura> getFacturasMes(int mes) {
-        ArrayList<Factura> facturas = new ArrayList<Factura>();
+    public static ArrayList<Factura> getFacturasMes(String filename, int mes) {
+        ArrayList<Factura> facturas = Archivos.readFacturas(filename);
         ArrayList<Factura> facturasMes = new ArrayList<Factura>();
-        try {
-            FileInputStream fis = new FileInputStream("./files/facturas.dat");
-            ObjectInputStream in = new ObjectInputStream(fis);
-            facturas = (ArrayList<Factura>) in.readObject();
-            fis.close();
-            in.close();
-            for(int i = 0; i < facturas.size(); i++){
-                if(facturas.get(i).getFecha().getMes() == mes) {
-                    facturasMes.add(facturas.get(i));
-                }
+        for(int i = 0; i < facturas.size(); i++){
+            if(facturas.get(i).getFecha().getMes() == mes) {
+                facturasMes.add(facturas.get(i));
             }
-        }catch(ClassNotFoundException e){
-        }catch(FileNotFoundException e) {
-        }catch(IOException e) {
         }
-
         return facturasMes;
     }
 
