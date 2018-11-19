@@ -181,12 +181,12 @@ public class Archivos implements Serializable {
         return clientes;
     }
 
-    public static HashMap<Integer, Factura> readFacturas(String filename) {
-        HashMap<Integer, Factura> facturas = new HashMap<Integer, Factura>();
+    public static ArrayList<Factura> readFacturas(String filename) {
+        ArrayList<Factura> facturas = new ArrayList<Factura>();
         try {
             FileInputStream fis = new FileInputStream(filename);
             ObjectInputStream in = new ObjectInputStream(fis);
-            facturas = (HashMap<Integer, Factura>) in.readObject();
+            facturas = (ArrayList<Factura>) in.readObject();
             fis.close();
             in.close();
         }catch(ClassNotFoundException e){

@@ -15,7 +15,7 @@ public class Principal {
         //HashMap<Integer, Factura> facturas = Archivos.readFacturas(facturasFile);
 
         String vehiculosFile = "./files/vehiculos.dat";
-        //Archivos.writeVehiculos(vehiculosFile, Datos.generarVehiculos());
+        Archivos.writeVehiculos(vehiculosFile, Datos.generarVehiculos());
 
         String vendedoresFile = "./files/vendedores.dat";
         //Archivos.writeVendedores(vendedoresFile, Datos.generarVendedores());
@@ -24,7 +24,24 @@ public class Principal {
         String detallesFile = "./files/detalles.dat";
         //Archivos.writeDetalles(detallesFile, Datos.generarDetalles());
         //HashMap<Integer, ArrayList<DetalleFactura>> detalles = Archivos.readDetalles(detallesFile);
+    
+        System.out.println(getInventarioTotal(facturasFile, vehiculosFile));
+    }
 
+    public static String getInventarioTotal(String facturasFile, String vehiculosFile) {
+        HashMap<Integer, Vehiculo> vehiculos = Archivos.readVehiculos(vehiculosFile);
+        ArrayList<Factura> facturas = Archivos.readFacturas(facturasFile);
+        String total = "Inventario Total\n" + Texto.ajustarCaracteres("Nombre", 15) + Texto.ajustarCaracteres("VIN", 25) + Texto.ajustarCaracteres("Precio", 18) + "\n";
+        for(int i = 0; i < facturas.size(); i++) {
+            ArrayList<DetalleFactura> detalles = Archivos.getDetalles(facturas.get(i).getDetalles());
+            for(int j = 0; j < detalles.size(); j++) {
+                if(vehiculos.containsKey(detalles.get(j).getProducto())) vehiculos.remove(detalles.get(j).getProducto());
+            }
+        }
+        for (HashMap.Entry<Integer, Vehiculo> entry : vehiculos.entrySet()) {
+            total += entry.getValue().toRow() + "\n";
+        }
+        return total;
     }
     
     public static String getAutosModelo(int modelo, String filename) {
