@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.util.Comparator;
 
 public class Vehiculo extends Producto implements Serializable{
 	private String vin;
@@ -69,4 +70,17 @@ public class Vehiculo extends Producto implements Serializable{
 	public String toString(){
 		return super.toString()+"\nVIN: "+getVin()+"\nColor "+getColor()+"\nMotor: "+getMotor()+"\nModelo: "+getModelo()+"\nPasajeros: "+getPasajeros();
 	}
+
+	//Comparable Methods
+	public static Comparator<Vehiculo> precioAsc = new Comparator<Vehiculo>() {
+		public int compare(Vehiculo v1, Vehiculo v2) {
+			return (int) v1.getPrecio() - (int) v2.getPrecio();
+		}
+	};
+	
+	public static Comparator<Vehiculo> precioDesc = new Comparator<Vehiculo>() {
+		public int compare(Vehiculo v1, Vehiculo v2) {
+			return (int) v2.getPrecio() - (int) v1.getPrecio();
+		}
+	};
 }

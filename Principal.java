@@ -2,6 +2,7 @@ import java.io.*;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Collections;
 
 public class Principal {
     public static void main(String args[]) {
@@ -15,7 +16,7 @@ public class Principal {
         //HashMap<Integer, Factura> facturas = Archivos.readFacturas(facturasFile);
 
         String vehiculosFile = "./files/vehiculos.dat";
-        Archivos.writeVehiculos(vehiculosFile, Datos.generarVehiculos());
+        //Archivos.writeVehiculos(vehiculosFile, Datos.generarVehiculos());
 
         String vendedoresFile = "./files/vendedores.dat";
         //Archivos.writeVendedores(vendedoresFile, Datos.generarVendedores());
@@ -25,10 +26,10 @@ public class Principal {
         //Archivos.writeDetalles(detallesFile, Datos.generarDetalles());
         //HashMap<Integer, ArrayList<DetalleFactura>> detalles = Archivos.readDetalles(detallesFile);
     
-        System.out.println(getInventarioTotal(facturasFile, vehiculosFile));
+        System.out.println(getInventarioTotal(facturasFile, vehiculosFile, true));
     }
 
-    public static String getInventarioTotal(String facturasFile, String vehiculosFile) {
+    public static String getInventarioTotal(String facturasFile, String vehiculosFile, boolean ascendente) {
         HashMap<Integer, Vehiculo> vehiculos = Archivos.readVehiculos(vehiculosFile);
         ArrayList<Factura> facturas = Archivos.readFacturas(facturasFile);
         String total = "Inventario Total\n" + Texto.ajustarCaracteres("Nombre", 15) + Texto.ajustarCaracteres("VIN", 25) + Texto.ajustarCaracteres("Precio", 18) + "\n";
@@ -38,9 +39,16 @@ public class Principal {
                 if(vehiculos.containsKey(detalles.get(j).getProducto())) vehiculos.remove(detalles.get(j).getProducto());
             }
         }
+
+        ArrayList<Vehiculo> inventario = new ArrayList<Vehiculo>();
         for (HashMap.Entry<Integer, Vehiculo> entry : vehiculos.entrySet()) {
-            total += entry.getValue().toRow() + "\n";
+            inventario.add(entry.getValue());
         }
+        if(ascendente) Collections.sort(inventario, Vehiculo.precioAsc);
+        else Collections.sort(inventario, Vehiculo.precioDesc);
+
+        for(int i = 0; i < inventario.size(); i++) total += inventario.get(i).toRow()+"\n";
+
         return total;
     }
     
