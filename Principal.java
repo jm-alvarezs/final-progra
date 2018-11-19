@@ -25,9 +25,20 @@ public class Principal {
         //Archivos.writeDetalles(detallesFile, Datos.generarDetalles());
         //HashMap<Integer, ArrayList<DetalleFactura>> detalles = Archivos.readDetalles(detallesFile);
 
-        System.out.println(getVendedores(vendedoresFile));
+        System.out.println(getAutosModelo(2018, vehiculosFile));
+
     }
     
+    public static String getAutosModelo(int modelo, String filename) {
+        HashMap<Integer, Vehiculo> vehiculos = Archivos.readVehiculos(filename);
+        ArrayList<Vehiculo> vehiculosModelo = new ArrayList<Vehiculo>();
+        String titulos = "Autos Modelo "+modelo+"\n";
+        for (HashMap.Entry<Integer, Vehiculo> entry : vehiculos.entrySet()) {
+            if(entry.getValue().getModelo() == modelo) vehiculosModelo.add(entry.getValue());
+        }
+        return titulos + listToString(vehiculosModelo);
+    }
+
     public static String getVendedores(String filename) {
         String total = Texto.ajustarCaracteres("Nombre", 30) + "Comision\n";
         HashMap<Integer, Vendedor> mapa = Archivos.readVendedores(filename);
@@ -42,5 +53,13 @@ public class Principal {
         DecimalFormat dos = new DecimalFormat("0.00");
         return "Ventas del Mes de"+Fecha.mesToString(mes)+" = "+dos.format(total);
     }
+
+    public static String listToString(ArrayList<Vehiculo> vehiculos) {
+	    String result = "";
+	    for (int i = 0; i < vehiculos.size(); i++) {
+	        result += vehiculos.get(i).toString() + "\n\n";
+	    }
+	    return result;
+	}
 
 }
