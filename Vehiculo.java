@@ -83,4 +83,17 @@ public class Vehiculo extends Producto implements Serializable{
 			return (int) v2.getPrecio() - (int) v1.getPrecio();
 		}
 	};
+
+	public static Comparator<Vehiculo> nombreAsc = new Comparator<Vehiculo>() {
+		public int compare(Vehiculo v1, Vehiculo v2) {
+			return v1.getNombre().compareTo(v2.getNombre());
+		}
+	};
+
+	
+	public static Comparator<Vehiculo> nombreDesc = new Comparator<Vehiculo>() {
+		public int compare(Vehiculo v1, Vehiculo v2) {
+			return v2.getNombre().compareTo(v1.getNombre());
+		}
+	};
 }

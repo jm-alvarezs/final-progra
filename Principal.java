@@ -16,7 +16,7 @@ public class Principal {
         //HashMap<Integer, Factura> facturas = Archivos.readFacturas(facturasFile);
 
         String vehiculosFile = "./files/vehiculos.dat";
-        //Archivos.writeVehiculos(vehiculosFile, Datos.generarVehiculos());
+        Archivos.writeVehiculos(vehiculosFile, Datos.generarVehiculos());
 
         String vendedoresFile = "./files/vendedores.dat";
         //Archivos.writeVendedores(vendedoresFile, Datos.generarVendedores());
