@@ -11,7 +11,7 @@ public class Principal {
         //HashMap<Integer, Cliente> clientes = Archivos.readClientes(clientesFile);
         
         String facturasFile = "./files/facturas.dat";
-        //Archivos.writeFacturas(facturasFile, Datos.generarFacturas());
+        Archivos.writeFacturas(facturasFile, Datos.generarFacturas());
         //HashMap<Integer, Factura> facturas = Archivos.readFacturas(facturasFile);
 
         String vehiculosFile = "./files/vehiculos.dat";
@@ -25,14 +25,22 @@ public class Principal {
         //Archivos.writeDetalles(detallesFile, Datos.generarDetalles());
         //HashMap<Integer, ArrayList<DetalleFactura>> detalles = Archivos.readDetalles(detallesFile);
 
-        System.out.println(getVentasMensuales(11));
+        System.out.println(getVendedores(vendedoresFile));
     }
     
+    public static String getVendedores(String filename) {
+        String total = Texto.ajustarCaracteres("Nombre", 30) + "Comision\n";
+        HashMap<Integer, Vendedor> mapa = Archivos.readVendedores(filename);
+        for (HashMap.Entry<Integer, Vendedor> entry : mapa.entrySet()) {
+            total += entry.getValue().toRow() + "\n";
+        }
+        return total;
+    }
+
     public static String getVentasMensuales(int mes) {
         double total = Archivos.getVentasMensuales(mes);
         DecimalFormat dos = new DecimalFormat("0.00");
-        return "Ventas del Mes "+mes+" = "+dos.format(total);
-
+        return "Ventas del Mes de"+Fecha.mesToString(mes)+" = "+dos.format(total);
     }
 
 }

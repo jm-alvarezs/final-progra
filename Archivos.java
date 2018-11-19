@@ -128,9 +128,11 @@ public class Archivos implements Serializable {
 
     public static void writeVendedores(String filename, HashMap<Integer, Vendedor> vendedores) {
         try {
-            ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(filename, true));
+            FileOutputStream fo = new FileOutputStream(filename, true);
+            ObjectOutputStream o = new ObjectOutputStream(fo);
             o.writeObject(vendedores);
             o.close();
+            fo.close();
         }catch (FileNotFoundException e) {
             e.printStackTrace();
         }catch (IOException e) {
@@ -221,8 +223,11 @@ public class Archivos implements Serializable {
             fis.close();
             in.close();
         }catch(ClassNotFoundException e){
+            e.printStackTrace();
         }catch(FileNotFoundException e) {
+            e.printStackTrace();
         }catch(IOException e) {
+            e.printStackTrace();
         }
 
         return vendedores;

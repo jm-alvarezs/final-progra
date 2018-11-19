@@ -10,6 +10,10 @@ public class Fecha implements Serializable {
 		setMes(mes);
 		setYear(year);
 	}
+
+	public Fecha() {
+		
+	}
 	
 	public void setDia(int dia) {
 		this.dia = dia;
@@ -33,6 +37,44 @@ public class Fecha implements Serializable {
 	
 	public int getYear() {
 		return year;
+	}
+
+	public String mesToString() {
+		String strmes = "";
+		switch(this.getMes()) {
+			case 1: strmes = "Enero"; break;
+			case 2: strmes = "Febrero"; break;
+			case 3: strmes = "Marzo"; break;
+			case 4: strmes = "Abril"; break;
+			case 5: strmes = "Mayo"; break;
+			case 6: strmes = "Junio"; break;
+			case 7: strmes = "Julio"; break;
+			case 8: strmes = "Agosto"; break;
+			case 9: strmes = "Septiembre"; break;
+			case 10: strmes = "Octubre"; break;
+			case 11: strmes = "Noviembre"; break;
+			case 12: strmes = "Diciembre";
+		}
+		return strmes;
+	}
+
+	public static String mesToString(int mes) {
+		String strmes = "";
+		switch(mes) {
+			case 1: strmes = "Enero"; break;
+			case 2: strmes = "Febrero"; break;
+			case 3: strmes = "Marzo"; break;
+			case 4: strmes = "Abril"; break;
+			case 5: strmes = "Mayo"; break;
+			case 6: strmes = "Junio"; break;
+			case 7: strmes = "Julio"; break;
+			case 8: strmes = "Agosto"; break;
+			case 9: strmes = "Septiembre"; break;
+			case 10: strmes = "Octubre"; break;
+			case 11: strmes = "Noviembre"; break;
+			case 12: strmes = "Diciembre";
+		}
+		return strmes;
 	}
 	
 	public String toString() {
