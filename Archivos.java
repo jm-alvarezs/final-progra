@@ -255,8 +255,11 @@ public class Archivos implements Serializable {
             fis.close();
             in.close();
         }catch(ClassNotFoundException e){
+            e.printStackTrace();
         }catch(FileNotFoundException e) {
+            e.printStackTrace();
         }catch(IOException e) {
+            e.printStackTrace();
         }
 
         return clientes;
@@ -307,11 +310,8 @@ public class Archivos implements Serializable {
             fis.close();
             in.close();
         }catch(ClassNotFoundException e){
-            e.printStackTrace();
         }catch(FileNotFoundException e) {
-            e.printStackTrace();
         }catch(IOException e) {
-            e.printStackTrace();
         }
 
         return vendedores;

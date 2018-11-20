@@ -64,8 +64,8 @@ public class Principal {
             case 7: reporte = getValoresClientes(clientesFile, facturasFile); break;
             case 8: reporte = getClientes(clientesFile, getSortCliente(), getOrden()); break;
             case 9: reporte = getNominaMensual(getMes(), getSortNomina(), getOrden()); break;
-            case 10: reporte = getClientesPorVendedor(clientesFile, vendedoresFile, facturasFile);
-            case 11: return;
+            case 10: reporte = getClientesPorVendedor(clientesFile, vendedoresFile, facturasFile); break;
+            default: return;
         }
         Date d = new Date();
         Fecha hoy = new Fecha(d.getDay()+18, d.getMonth()+1, d.getYear()-100+2000);
