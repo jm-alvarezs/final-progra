@@ -1,4 +1,6 @@
 import java.util.Comparator;
+import java.util.ArrayList;
+import java.text.DecimalFormat;
 
 public class Nomina {
     private int vendedor;
@@ -37,6 +39,15 @@ public class Nomina {
 
     public String toString() {
         return "Vendedor: " + getVendedor() + "\n" + "Monto: "+getMonto();   
+    }
+
+    public static String nominaToString(ArrayList<Nomina> nomina) {
+        String total = Texto.ajustarCaracteres("Nombre", 20)+Texto.ajustarCaracteres("Nomina", 20) + "\n";
+        DecimalFormat dos = new DecimalFormat("00,000.00");
+        for(int i = 0; i < nomina.size(); i++){
+            total += Texto.ajustarCaracteres(nomina.get(i).getNombre(), 20) + Texto.ajustarCaracteres(dos.format(nomina.get(i).getMonto()), 20) + "\n";
+        }
+        return total;
     }
 
     public static Comparator<Nomina> montoAsc = new Comparator<Nomina>() {

@@ -27,7 +27,7 @@ public class Reporte implements Serializable {
     }
 
     public String toString() {
-        return getFecha().toString() + "\n" + getContenido();
+        return Texto.ajustarCaracteres("+", 136, "+") + "\nFecha: "+getFecha().toString() + "\nReporte: \n" + getContenido()+"\n"+Texto.ajustarCaracteres("+", 136, "+");
     }
 
 }

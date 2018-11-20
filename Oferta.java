@@ -1,5 +1,6 @@
 import java.io.Serializable;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 public class Oferta implements Serializable {
     private int idOferta;
@@ -61,5 +62,13 @@ public class Oferta implements Serializable {
     public String toRow() {
         DecimalFormat dos = new DecimalFormat("0.00");
         return Texto.ajustarCaracteres(getTitulo(), 25) + Texto.ajustarCaracteres(dos.format(getDescuento()*100)+"%", 10) + Texto.ajustarCaracteres(getVigencia().toString(), 10);
+    }
+
+    public static String ofertasToString(ArrayList<Oferta>  ofertas) {
+        String total = Texto.ajustarCaracteres("Titulo", 25) + Texto.ajustarCaracteres("Descuento", 10) + Texto.ajustarCaracteres("Vigencia", 10) + "\n";
+        for(int i = 0; i < ofertas.size(); i++){
+            total += ofertas.get(i).toRow() + "\n";
+        }
+        return total;
     }
 }

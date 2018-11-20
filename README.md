@@ -13,6 +13,10 @@
   <li>Inventario Total</li>
   <li>Autos modelo 2018</li>
   <li>Vendedores y su comisión</li>
-  <li>Facturas a Crédito</li>
+  <li>Facturas Mensuales</li>
   <li>Ofertas del Mes</li>
+  <li>Valor por Cliente</li>
+  <li>Clientes ordenados por Fecha o Nombre</li>
+  <li>Nomina Mensual</li>
+  <li>Clientes de Cada Vendedor</li>
 </ol>

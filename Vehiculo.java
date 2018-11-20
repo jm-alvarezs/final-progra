@@ -1,6 +1,7 @@
 import java.io.Serializable;
 import java.util.Comparator;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 public class Vehiculo extends Producto implements Serializable {
 	private String vin;
@@ -72,6 +73,14 @@ public class Vehiculo extends Producto implements Serializable {
 	public String toString(){
 		return super.toString()+"\nVIN: "+getVin()+"\nColor "+getColor()+"\nMotor: "+getMotor()+"\nModelo: "+getModelo()+"\nPasajeros: "+getPasajeros();
 	}
+
+	public static String vehiculosToString(ArrayList<Vehiculo> vehiculos) {
+	    String result = "";
+	    for (int i = 0; i < vehiculos.size(); i++) {
+	        result += vehiculos.get(i).toString() + "\n\n";
+	    }
+	    return result;
+    }
 
 	public static Comparator<Vehiculo> precioAsc = new Comparator<Vehiculo>() {
 		public int compare(Vehiculo v1, Vehiculo v2) {

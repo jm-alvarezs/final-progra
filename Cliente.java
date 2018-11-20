@@ -1,5 +1,6 @@
 import java.io.Serializable;
 import java.util.Comparator;
+import java.util.ArrayList;
 
 public class Cliente extends Persona implements Serializable {
    String rfc;
@@ -27,6 +28,14 @@ public class Cliente extends Persona implements Serializable {
 
     public String toString() {
         return "Datos de Cliente: \n" + super.toString();
+    }
+
+    public static String clientesToString(ArrayList<Cliente> clientes) {
+      String total = Texto.ajustarCaracteres("Nombre", 25) + Texto.ajustarCaracteres("Miembro Desde (yy/mm/dd)", 10) + "\n";
+      for(int i = 0; i < clientes.size(); i++) {
+          total += Texto.ajustarCaracteres(clientes.get(i).getNombre(), 25) + Texto.ajustarCaracteres(clientes.get(i).getMiembroDesde().toString(), 10) + "\n";
+      }
+      return total;
     }
 
     public static Comparator<Cliente> nombreAsc = new Comparator<Cliente>() {

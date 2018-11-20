@@ -24,6 +24,14 @@ public class Texto {
 		}
 		return nuevo;
 	}
+
+	public static String ajustarCaracteres(String texto, int size, String caracter) {
+		String nuevo = texto;
+		while(nuevo.length() < size) {
+			nuevo += caracter;
+		}
+		return nuevo;
+	}
 	
 	public void convertirMayusculas() {
 		this.texto = texto.toUpperCase();
