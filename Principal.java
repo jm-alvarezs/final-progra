@@ -31,7 +31,7 @@ public class Principal {
         //Archivos.writeDetalles(detallesFile, Datos.generarDetalles());
         //HashMap<Integer, ArrayList<DetalleFactura>> detalles = Archivos.readDetalles(detallesFile);
         
-        System.out.println(getValoresClientes(clientesFile, facturasFile));
+        System.out.println(getClientesPorVendedor(clientesFile, vendedoresFile, facturasFile));
     }
 
     public static String getValoresClientes(String clientesFile, String facturasFile) {
@@ -44,6 +44,34 @@ public class Principal {
             else valores.put(idcliente, compra);
         }
         return valoresToString(clientesFile, valores);
+    }
+
+    public static String getClientesPorVendedor(String clientesFile, String vendedoresFile, String facturasFile) {
+        ArrayList<Factura> facturas = Archivos.readFacturas(facturasFile);
+        HashMap<Integer, ArrayList<Integer>> vendedoresClientes = new HashMap<Integer, ArrayList<Integer>>();
+        for(int i = 0; i < facturas.size(); i++) {
+            int cliente = facturas.get(i).getCliente();
+            int vendedor = facturas.get(i).getVendedor();
+            if(vendedoresClientes.containsKey(vendedor)) vendedoresClientes.get(vendedor).add(cliente);
+            else {
+                ArrayList<Integer> clientes = new ArrayList<Integer>();
+                clientes.add(cliente);
+                vendedoresClientes.put(vendedor, clientes);
+            }
+        }
+        return vendedoresClientesToString(Archivos.readVendedores(vendedoresFile), Archivos.readClientes(clientesFile), vendedoresClientes);
+    }
+
+    public static String vendedoresClientesToString(HashMap<Integer, Vendedor> vendedores, HashMap<Integer, Cliente> clientes, HashMap<Integer, ArrayList<Integer>> vendedoresClientes) {        
+        String total = "";
+        for(HashMap.Entry<Integer, ArrayList<Integer>> entry: vendedoresClientes.entrySet()) {
+            total += "Vendedor: "+vendedores.get(entry.getKey()).getNombrePersona() + "\n";
+            for(int i = 0; i < entry.getValue().size(); i++) {
+                total += "Cliente: "+clientes.get(entry.getValue().get(i)).getNombre()+"\n";
+            }
+            total += "\n";
+        }
+        return total;
     }
 
     public static String valoresToString(String clientesFile, HashMap<Integer, Double> valores) {
