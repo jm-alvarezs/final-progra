@@ -73,6 +73,14 @@ public class Factura implements Serializable {
 				"\n"+Texto.ajustarCaracteres("", 115)+"Total:    "+dos.format(calcularTotalFactura());
 	}
 
+	public static String facturasToString(ArrayList<Factura> facturas) {
+	    String result = "";
+	    for (int i = 0; i < facturas.size(); i++) {
+	        result += facturas.get(i).toString() + "\n\n";
+	    }
+	    return result;
+    }
+
 	public static String listToString(ArrayList<DetalleFactura> detalles) {
 	    String result = "";
 	    for (int i = 0; i < detalles.size(); i++) {

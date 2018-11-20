@@ -4,13 +4,11 @@ public class User implements Serializable {
     private int userid;
     private String user;
     private String pass;
-    private int level;
 
-    public User(int userid, String user, String pass, int level) {
+    public User(int userid, String user, String pass) {
         setUserId(userid);
         setUser(user);
         setPass(pass);
-        setLevel(level);
     }
 
     public User() {
@@ -29,20 +27,12 @@ public class User implements Serializable {
         this.pass = pass;
     }
 
-    public void setLevel(int level) {
-        this.level = level;
-    }
-
     public String getUser() {
         return user;
     }
 
     public int getUserId() {
         return userid;
-    }
-
-    public int getLevel() {
-        return level;
     }
 
     public boolean login(String password) {
@@ -54,7 +44,7 @@ public class User implements Serializable {
     }
 
     public String toString() {
-        return "UserID: "+getUserId()+"\nUsername: "+getUser()+"\nNivel: "+getLevel();
+        return "UserID: "+getUserId()+"\nUsername: "+getUser();
     }
 
 }

@@ -11,7 +11,7 @@ public class Principal {
     final static String detallesFile = "./files/detalles.dat";
     final static String usersFile = "./files/users.dat";
     public static void main(String args[])  {
-
+        Datos.generarDatos(clientesFile, facturasFile, vehiculosFile, vendedoresFile, ofertasFile, detallesFile, usersFile);
         if(!login(getUser(), getPass())) {
             System.out.println("Autenticación Fallida. Intente de Nuevo. ");
             return;
@@ -125,8 +125,16 @@ public class Principal {
     }
 
     public static String getPass() {
-        System.out.print("Introduce tu contraseña: ");
-        return Lectura.readString();
+            Console c = null;
+            String pass = "";
+            try {
+               c = System.console();
+               if (c != null) {
+                  pass = String.valueOf(c.readPassword("Introduce tu contraseña: "));
+               } 
+            } catch(Exception e) {
+            }
+            return pass;
     }
 
     public static boolean login(String user, String pass) {
@@ -146,10 +154,8 @@ public class Principal {
             if(valores.containsKey(idcliente)) valores.put(idcliente, valores.get(idcliente) + compra);
             else valores.put(idcliente, compra);
         }
-        return valoresToString(clientesFile, valores);
+        return Formato.valoresToString(clientesFile, valores);
     }
-
-    
 
     public static String getClientesPorVendedor(String clientesFile, String vendedoresFile, String facturasFile) {
         ArrayList<Factura> facturas = Archivos.readFacturas(facturasFile);
@@ -164,29 +170,7 @@ public class Principal {
                 vendedoresClientes.put(vendedor, clientes);
             }
         }
-        return vendedoresClientesToString(Archivos.readVendedores(vendedoresFile), Archivos.readClientes(clientesFile), vendedoresClientes);
-    }
-
-    public static String vendedoresClientesToString(HashMap<Integer, Vendedor> vendedores, HashMap<Integer, Cliente> clientes, HashMap<Integer, ArrayList<Integer>> vendedoresClientes) {        
-        String total = "";
-        for(HashMap.Entry<Integer, ArrayList<Integer>> entry: vendedoresClientes.entrySet()) {
-            total += "Vendedor: "+vendedores.get(entry.getKey()).getNombrePersona() + "\n";
-            for(int i = 0; i < entry.getValue().size(); i++) {
-                total += "Cliente: "+clientes.get(entry.getValue().get(i)).getNombre()+"\n";
-            }
-            total += "\n";
-        }
-        return total;
-    }
-
-    public static String valoresToString(String clientesFile, HashMap<Integer, Double> valores) {
-        HashMap<Integer, Cliente> clientesMapa = Archivos.readClientes(clientesFile);
-        String total = Texto.ajustarCaracteres("Nombre", 25) + Texto.ajustarCaracteres("Monto Comprado", 30) + "\n";
-        DecimalFormat dos = new DecimalFormat("0,000,000.00");
-        for(HashMap.Entry<Integer, Double> entry: valores.entrySet()) {
-            total += Texto.ajustarCaracteres(Archivos.getCliente(entry.getKey()).getNombre(), 25) + Texto.ajustarCaracteres("$"+dos.format(entry.getValue()), 30) + "\n";
-        }
-        return total;
+        return Formato.vendedoresClientesToString(Archivos.readVendedores(vendedoresFile), Archivos.readClientes(clientesFile), vendedoresClientes);
     }
 
     public static String getOfertas(String filename) {
@@ -198,38 +182,14 @@ public class Principal {
             int vigente = entry.getValue().getVigenciaStr().compareTo(dateFormat.format(hoy));
             if(vigente == 0 || vigente == 1) ofertas.add(entry.getValue());
         }
-        return ofertasToString(ofertas);
-    }
-
-    public static String ofertasToString(ArrayList<Oferta>  ofertas) {
-        String total = Texto.ajustarCaracteres("Titulo", 25) + Texto.ajustarCaracteres("Descuento", 10) + Texto.ajustarCaracteres("Vigencia", 10) + "\n";
-        for(int i = 0; i < ofertas.size(); i++){
-            total += ofertas.get(i).toRow() + "\n";
-        }
-        return total;
+        return Formato.ofertasToString(ofertas);
     }
 
     public static String getClientes(String filename, char sort, boolean ascendente) {
         HashMap<Integer, Cliente> clientesMapa = Archivos.readClientes(filename);
-        ArrayList<Cliente> clientes = clientesToArrayList(clientesMapa);
+        ArrayList<Cliente> clientes = Estructuras.clientesToArrayList(clientesMapa);
         clientes = Ordenar.ordenarClientes(clientes, sort, ascendente);
-        return clientesToString(clientes);
-    }
-
-    public static String clientesToString(ArrayList<Cliente> clientes) {
-        String total = Texto.ajustarCaracteres("Nombre", 25) + Texto.ajustarCaracteres("Miembro Desde (yy/mm/dd)", 10) + "\n";
-        for(int i = 0; i < clientes.size(); i++) {
-            total += Texto.ajustarCaracteres(clientes.get(i).getNombre(), 25) + Texto.ajustarCaracteres(clientes.get(i).getMiembroDesde().toString(), 10) + "\n";
-        }
-        return total;
-    }
-
-    public static ArrayList<Cliente> clientesToArrayList(HashMap<Integer, Cliente> mapa) {
-        ArrayList<Cliente> clientes = new ArrayList<Cliente>();
-        for(HashMap.Entry<Integer, Cliente> entry: mapa.entrySet()) {
-            clientes.add(entry.getValue());
-        }
-        return clientes;
+        return Formato.clientesToString(clientes);
     }
 
     public static String getNominaMensual(int mes, char sort, boolean ascendente) {
@@ -242,16 +202,7 @@ public class Principal {
             nomina.add(new Nomina(v.getId(), v.getNombrePersona().toString(), v.getSalario() + getComision(v.getId(), comisiones)));
         }
         nomina = Ordenar.ordenarNomina(nomina, sort, ascendente);
-        return nominaToString(nomina);
-    }
-
-    public static String nominaToString(ArrayList<Nomina> nomina) {
-        String total = Texto.ajustarCaracteres("Nombre", 20)+Texto.ajustarCaracteres("Nomina", 20) + "\n";
-        DecimalFormat dos = new DecimalFormat("00,000.00");
-        for(int i = 0; i < nomina.size(); i++){
-            total += Texto.ajustarCaracteres(nomina.get(i).getNombre(), 20) + Texto.ajustarCaracteres(dos.format(nomina.get(i).getMonto()), 20) + "\n";
-        }
-        return total;
+        return Formato.nominaToString(nomina);
     }
 
     public static double getComision(int id, HashMap<Integer, Double> comisiones) {
@@ -277,23 +228,9 @@ public class Principal {
                 if(vehiculos.containsKey(detalles.get(j).getProducto())) vehiculos.remove(detalles.get(j).getProducto());
             }
         }
-        ArrayList<Vehiculo> inventario = vehiculosToArrayList(vehiculos);
+        ArrayList<Vehiculo> inventario = Estructuras.vehiculosToArrayList(vehiculos);
         inventario = Ordenar.ordenarVehiculos(inventario, sort, ascendente);
-        return inventarioToRow(inventario);
-    }
-
-    public static String inventarioToRow(ArrayList<Vehiculo> inventario) {
-        String total = "Inventario Total\n" + Texto.ajustarCaracteres("Nombre", 15) + Texto.ajustarCaracteres("VIN", 25) + Texto.ajustarCaracteres("Precio", 18) + "\n";
-        for(int i = 0; i < inventario.size(); i++) total += inventario.get(i).toRow()+"\n";
-        return total;
-    }
-
-    public static ArrayList<Vehiculo> vehiculosToArrayList(HashMap<Integer, Vehiculo> vehiculos) {
-        ArrayList<Vehiculo> arreglo = new ArrayList<Vehiculo>();
-        for (HashMap.Entry<Integer, Vehiculo> entry : vehiculos.entrySet()) {
-            arreglo.add(entry.getValue());
-        }
-        return arreglo;
+        return Formato.inventarioToString(inventario);
     }
     
     public static String getAutosModelo(int modelo, String filename) {
@@ -302,7 +239,7 @@ public class Principal {
         for (HashMap.Entry<Integer, Vehiculo> entry : vehiculos.entrySet()) {
             if(entry.getValue().getModelo() == modelo) vehiculosModelo.add(entry.getValue());
         }
-        return "Autos Modelo "+modelo+"\n" + vehiculosToString(vehiculosModelo);
+        return "Autos Modelo "+modelo+"\n" + Formato.vehiculosToString(vehiculosModelo);
     }
 
     public static String getVendedores(String filename) {
@@ -317,22 +254,7 @@ public class Principal {
     public static String getVentasMensuales(String facturasFile, int mes) {
         double total = Archivos.getVentasMensuales(facturasFile, mes);
         DecimalFormat dos = new DecimalFormat("0,000,000.00");
-        return "Ventas del Mes de"+Fecha.mesToString(mes)+" = $"+dos.format(total);
+        return "Ventas del Mes de "+Fecha.mesToString(mes)+" = $"+dos.format(total);
     }
 
-    public static String vehiculosToString(ArrayList<Vehiculo> vehiculos) {
-	    String result = "";
-	    for (int i = 0; i < vehiculos.size(); i++) {
-	        result += vehiculos.get(i).toString() + "\n\n";
-	    }
-	    return result;
-    }
-    
-    public static String facturasToString(ArrayList<Factura> facturas) {
-	    String result = "";
-	    for (int i = 0; i < facturas.size(); i++) {
-	        result += facturas.get(i).toString() + "\n\n";
-	    }
-	    return result;
-    }
 }

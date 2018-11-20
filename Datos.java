@@ -3,7 +3,7 @@ import java.util.HashMap;
 
 public class Datos {
 
-    public static void generarDatos() {
+    public static void generarDatos(String clientesFile, String facturasFile, String vehiculosFile, String vendedoresFile, String ofertasFile, String detallesFile, String usersFile) {
         Archivos.writeClientes(clientesFile, Datos.generarClientes());
         Archivos.writeFacturas(facturasFile, Datos.generarFacturas());
         Archivos.writeVehiculos(vehiculosFile, Datos.generarVehiculos());
@@ -128,8 +128,8 @@ public class Datos {
 
     public static HashMap<String, User> generarUsuarios() {
         HashMap<String, User> users = new HashMap<String, User>();
-        users.put("Admin", new User(1, "Admin", "jkl10", 1));
-        users.put("v1202", new User(2, "v1202", "hjk90", 2));
+        users.put("Admin", new User(1, "Admin", "jkl10"));
+        users.put("v1202", new User(2, "v1202", "hjk90"));
         return users;
     }
 
