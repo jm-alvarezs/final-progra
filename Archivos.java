@@ -4,6 +4,22 @@ import java.util.HashMap;
 
 public class Archivos implements Serializable {
 
+    public static Oferta getOferta(int oferta) {
+        Oferta offer = new Oferta();
+        try {
+            FileInputStream fis = new FileInputStream("./files/ofertas.dat");
+            ObjectInputStream in = new ObjectInputStream(fis);
+            HashMap<Integer, Oferta> mapa = (HashMap<Integer, Oferta>) in.readObject();
+            offer = mapa.get(oferta);
+            fis.close();
+            in.close();
+        }catch(ClassNotFoundException e){
+        }catch(FileNotFoundException e) {
+        }catch(IOException e) {
+        }
+        return offer;
+    }
+
     public static double getVentasMensuales(String filename, int mes) {
         ArrayList<Factura> facturasMes = getFacturasMes(filename, mes);
         double total = 0;
@@ -107,6 +123,18 @@ public class Archivos implements Serializable {
         return v;
     }
 
+    public static void writeOfertas(String filename, HashMap<Integer, Oferta> ofertas) {
+        try {
+            ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(filename, true));
+            o.writeObject(ofertas);
+            o.close();
+        }catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void writeClientes(String filename, HashMap<Integer, Cliente> clientes) {
         try {
             ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(filename, true));
@@ -169,6 +197,23 @@ public class Archivos implements Serializable {
             e.printStackTrace();
         }
     }
+
+    public static HashMap<Integer, Oferta> readOfertas(String filename) {
+        HashMap<Integer, Oferta> ofertas = new HashMap<Integer, Oferta>();
+        try {
+            FileInputStream fis = new FileInputStream(filename);
+            ObjectInputStream in = new ObjectInputStream(fis);
+            ofertas = (HashMap<Integer, Oferta>) in.readObject();
+            fis.close();
+            in.close();
+        }catch(ClassNotFoundException e){
+        }catch(FileNotFoundException e) {
+        }catch(IOException e) {
+        }
+
+        return ofertas;
+    }
+
 
     public static HashMap<Integer, Cliente> readClientes(String filename) {
         HashMap<Integer, Cliente> clientes = new HashMap<Integer, Cliente>();

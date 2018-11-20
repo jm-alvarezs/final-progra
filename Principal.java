@@ -1,8 +1,9 @@
 import java.io.*;
-import java.text.DecimalFormat;
+import java.text.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Collections;
+import java.util.Date;
 
 public class Principal {
     public static void main(String args[]) {
@@ -22,11 +23,35 @@ public class Principal {
         //Archivos.writeVendedores(vendedoresFile, Datos.generarVendedores());
         //HashMap<Integer, Vendedor> vendedores = Archivos.readVendedores(vendedoresFile);
         
+        String ofertasFile = "./files/ofertas.dat";
+        //Archivos.writeOfertas(ofertasFile, Datos.generarOfertas());
+        //HashMap<Integer, Oferta> ofertas = Archivos.readOfertas(ofertasFile);
+
         String detallesFile = "./files/detalles.dat";
         //Archivos.writeDetalles(detallesFile, Datos.generarDetalles());
         //HashMap<Integer, ArrayList<DetalleFactura>> detalles = Archivos.readDetalles(detallesFile);
-    
-        System.out.println(getClientes(clientesFile, 'f', true));
+        
+        System.out.println(getOfertas(ofertasFile));
+    }
+
+    public static String getOfertas(String filename) {
+        HashMap<Integer, Oferta> ofertasMapa = Archivos.readOfertas(filename);
+        ArrayList<Oferta> ofertas = new ArrayList<Oferta>();
+        Date hoy = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");  
+        for(HashMap.Entry<Integer, Oferta> entry: ofertasMapa.entrySet()) {
+            int vigente = entry.getValue().getVigenciaStr().compareTo(dateFormat.format(hoy));
+            if(vigente == 0 || vigente == 1) ofertas.add(entry.getValue());
+        }
+        return ofertasToString(ofertas);
+    }
+
+    public static String ofertasToString(ArrayList<Oferta>  ofertas) {
+        String total = Texto.ajustarCaracteres("Titulo", 25) + Texto.ajustarCaracteres("Descuento", 10) + Texto.ajustarCaracteres("Vigencia", 10) + "\n";
+        for(int i = 0; i < ofertas.size(); i++){
+            total += ofertas.get(i).toRow() + "\n";
+        }
+        return total;
     }
 
     public static String getClientes(String filename, char sort, boolean ascendente) {

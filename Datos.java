@@ -28,21 +28,31 @@ public class Datos {
         return vehiculos;
     }
 
+    public static HashMap<Integer, Oferta> generarOfertas() {
+        HashMap<Integer, Oferta> ofertas = new HashMap<Integer, Oferta>();
+        ofertas.put(1, new Oferta(1, 0.10, "10% de descuento", new Fecha(15, 10, 2018)));
+        ofertas.put(2, new Oferta(2, 0.15, "BUENFIN15", new Fecha(19, 11, 2018)));
+        ofertas.put(3, new Oferta(3, 0.10, "BUENFIN10", new Fecha(19, 11, 2018)));
+        ofertas.put(4, new Oferta(4, 0.05, "Bono de 5%", new Fecha(31, 12, 2018)));
+        ofertas.put(5, new Oferta(5, 0.10, "NAVIDAD10", new Fecha(25,12,2018)));
+        return ofertas;
+    }
+
     public static HashMap<Integer, ArrayList<DetalleFactura>> generarDetalles() {
         ArrayList<DetalleFactura> d1 = new ArrayList<DetalleFactura>();
-        d1.add(new DetalleFactura(15, 1));
+        d1.add(new DetalleFactura(15, 1, 2));
         ArrayList<DetalleFactura> d2 = new ArrayList<DetalleFactura>();
         d2.add(new DetalleFactura(3, 1));
         ArrayList<DetalleFactura> d3 = new ArrayList<DetalleFactura>();
         d3.add(new DetalleFactura(8, 1));
         ArrayList<DetalleFactura> d4 = new ArrayList<DetalleFactura>();
-        d4.add(new DetalleFactura(5, 1));
+        d4.add(new DetalleFactura(5, 1, 1));
         ArrayList<DetalleFactura> d5 = new ArrayList<DetalleFactura>();
         d5.add(new DetalleFactura(12, 1));
         ArrayList<DetalleFactura> d6 = new ArrayList<DetalleFactura>();
         d6.add(new DetalleFactura(19, 1));
         ArrayList<DetalleFactura> d7 = new ArrayList<DetalleFactura>();
-        d7.add(new DetalleFactura(6, 1));
+        d7.add(new DetalleFactura(6, 1, 3));
         ArrayList<DetalleFactura> d8 = new ArrayList<DetalleFactura>();
         d8.add(new DetalleFactura(1, 1));
         

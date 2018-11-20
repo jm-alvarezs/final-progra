@@ -4,18 +4,18 @@ import java.text.*;
 class DetalleFactura implements Serializable {
 	int producto;
 	int cant;
-	double descuento;
-	
+	int oferta;
+
 	public DetalleFactura(int producto, int cant) {
 		setProducto(producto);
 		setCant(cant);
-		setDescuento(0);
+		setOferta(0);
 	}
 	
-	public DetalleFactura(int producto, int cant, double descuento) {
+	public DetalleFactura(int producto, int cant, int oferta) {
 		setProducto(producto);
 		setCant(cant);
-		setDescuento(descuento);
+		setOferta(oferta);
 	}
 	
 	public String toString() {
@@ -47,12 +47,16 @@ class DetalleFactura implements Serializable {
 		return cant;
 	}
 	
-	public void setDescuento(double descuento) {
-		this.descuento = descuento;
+	public void setOferta(int oferta) {
+		this.oferta = oferta;
 	}
 	
+	public int getOferta() {
+		return oferta;
+	}
+
 	public double getDescuento() {
-		return descuento;
+		return Archivos.getOferta(getOferta()).getDescuento();
 	}
 	
 	public double getImporte() {
