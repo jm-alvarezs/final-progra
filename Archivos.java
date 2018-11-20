@@ -91,6 +91,22 @@ public class Archivos implements Serializable {
         return v;
     }
 
+    public static Vendedor getVendedor(int id) {
+        Vendedor v = new Vendedor();
+        try {
+            FileInputStream fis = new FileInputStream("./files/vendedores.dat");
+            ObjectInputStream in = new ObjectInputStream(fis);
+            HashMap<Integer, Vendedor> vendedores = (HashMap<Integer, Vendedor>) in.readObject();
+            v = vendedores.get(id);
+            fis.close();
+            in.close();
+        }catch(ClassNotFoundException e){
+        }catch(FileNotFoundException e) {
+        }catch(IOException e) {
+        }
+        return v;
+    }
+
     public static void writeClientes(String filename, HashMap<Integer, Cliente> clientes) {
         try {
             ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(filename, true));

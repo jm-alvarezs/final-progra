@@ -8,24 +8,92 @@ public class Principal {
     public static void main(String args[]) {
     
         String clientesFile = "./files/clientes.dat";
-        Archivos.writeClientes(clientesFile, Datos.generarClientes());
+        //Archivos.writeClientes(clientesFile, Datos.generarClientes());
         //HashMap<Integer, Cliente> clientes = Archivos.readClientes(clientesFile);
         
         String facturasFile = "./files/facturas.dat";
-        Archivos.writeFacturas(facturasFile, Datos.generarFacturas());
+        //Archivos.writeFacturas(facturasFile, Datos.generarFacturas());
         //HashMap<Integer, Factura> facturas = Archivos.readFacturas(facturasFile);
 
         String vehiculosFile = "./files/vehiculos.dat";
         //Archivos.writeVehiculos(vehiculosFile, Datos.generarVehiculos());
 
         String vendedoresFile = "./files/vendedores.dat";
-        Archivos.writeVendedores(vendedoresFile, Datos.generarVendedores());
+        //Archivos.writeVendedores(vendedoresFile, Datos.generarVendedores());
         //HashMap<Integer, Vendedor> vendedores = Archivos.readVendedores(vendedoresFile);
         
         String detallesFile = "./files/detalles.dat";
         //Archivos.writeDetalles(detallesFile, Datos.generarDetalles());
         //HashMap<Integer, ArrayList<DetalleFactura>> detalles = Archivos.readDetalles(detallesFile);
     
+        System.out.println(getNominaMensual(11, 'n', true));
+    }
+
+    public static String getNominaMensual(int mes, char sort, boolean ascendente) {
+        HashMap<Integer, Vendedor> vendedores = Archivos.readVendedores("./files/vendedores.dat");
+        ArrayList<Factura> facturas = Archivos.getFacturasMes("./files/facturas.dat", mes);
+        HashMap<Integer, Double> comisiones = getComisiones(mes, facturas);
+        ArrayList<Nomina> nomina = new ArrayList<Nomina>();
+        for (HashMap.Entry<Integer, Vendedor> entry : vendedores.entrySet()) {
+            Vendedor v = (Vendedor) entry.getValue();
+            nomina.add(new Nomina(v.getId(), v.getNombrePersona().toString(), v.getSalario() + getComision(v.getId(), comisiones)));
+        }
+        nomina = ordenarNomina(nomina, sort, ascendente);
+        return nominaToString(nomina);
+    }
+
+    public static ArrayList<Nomina> ordenarNomina(ArrayList<Nomina> nomina, char sort, boolean ascendente) {
+        if(ascendente) {
+            if(sort == 'n') nomina = ordenarNominaNombreAsc(nomina);
+            else nomina = ordenarNominaMontoAsc(nomina);
+        } else {
+            if(sort == 'n') nomina = ordenarNominaNombreDesc(nomina);
+            else nomina = ordenarNominaMontoDesc(nomina);
+        }
+        return nomina;
+    }
+
+    public static ArrayList<Nomina> ordenarNominaNombreAsc(ArrayList<Nomina> nomina) {
+        Collections.sort(nomina, Nomina.nombreAsc);
+        return nomina;
+    }
+
+    public static ArrayList<Nomina> ordenarNominaNombreDesc(ArrayList<Nomina> nomina) {
+        Collections.sort(nomina, Nomina.nombreDesc);
+        return nomina;
+    }
+    
+    public static ArrayList<Nomina> ordenarNominaMontoAsc(ArrayList<Nomina> nomina) {
+        Collections.sort(nomina, Nomina.montoAsc);
+        return nomina;
+    }
+    
+    public static ArrayList<Nomina> ordenarNominaMontoDesc(ArrayList<Nomina> nomina) {
+        Collections.sort(nomina, Nomina.montoDesc);
+        return nomina;
+    }
+
+    public static String nominaToString(ArrayList<Nomina> nomina) {
+        String total = Texto.ajustarCaracteres("Nombre", 20)+Texto.ajustarCaracteres("Nomina", 20) + "\n";
+        DecimalFormat dos = new DecimalFormat("0.00");
+        for(int i = 0; i < nomina.size(); i++){
+            total += Texto.ajustarCaracteres(nomina.get(i).getNombre(), 20) + Texto.ajustarCaracteres(dos.format(nomina.get(i).getMonto()), 20) + "\n";
+        }
+        return total;
+    }
+
+    public static double getComision(int id, HashMap<Integer, Double> comisiones) {
+        if(comisiones.containsKey(id)) return comisiones.get(id);
+        return 0;
+    }
+
+    public static HashMap<Integer, Double> getComisiones(int mes, ArrayList<Factura> facturas) {
+        HashMap<Integer, Double> comisiones = new HashMap<Integer, Double>();
+        for(int i = 0; i < facturas.size(); i++) {
+            double comision = facturas.get(i).calcularTotalFactura() * Archivos.getVendedor(facturas.get(i).getVendedor()).getComision();
+            comisiones.put(facturas.get(i).getVendedor(), comision);
+        }
+        return comisiones;
     }
 
     public static String getInventarioTotal(String facturasFile, String vehiculosFile, char sort, boolean ascendente) {

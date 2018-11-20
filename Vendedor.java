@@ -11,6 +11,10 @@ public class Vendedor extends Persona implements Serializable{
         setComision(comision);
     }
 
+    public Vendedor() {
+        
+    }
+
     public void setSalario(double salario) {
         this.salario = salario;
     }
