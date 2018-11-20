@@ -10,12 +10,11 @@ public class Principal {
     final static String ofertasFile = "./files/ofertas.dat";
     final static String detallesFile = "./files/detalles.dat";
     final static String usersFile = "./files/users.dat";
+    
     public static void main(String args[])  {
-        Datos.generarDatos(clientesFile, facturasFile, vehiculosFile, vendedoresFile, ofertasFile, detallesFile, usersFile);
-        boolean login = login(getUser(), getPass());
-        while(!login) {
+        //Datos.generarDatos(clientesFile, facturasFile, vehiculosFile, vendedoresFile, ofertasFile, detallesFile, usersFile);
+        while(!login(getUser(), getPass())) {
             System.out.println("Autenticación Fallida. Intente de Nuevo. ");
-            login = login(getUser(), getPass());
         }
 
         boolean answer = true;
@@ -138,6 +137,7 @@ public class Principal {
                   pass = String.valueOf(c.readPassword("Introduce tu contraseña: "));
                } 
             } catch(Exception e) {
+               e.printStackTrace();
             }
             return pass;
     }
