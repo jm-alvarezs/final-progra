@@ -1,5 +1,6 @@
 import java.io.Serializable;
 import java.util.Comparator;
+import java.text.DecimalFormat;
 
 public class Vehiculo extends Producto implements Serializable {
 	private String vin;
@@ -62,9 +63,10 @@ public class Vehiculo extends Producto implements Serializable {
 	}
 	
 	public String toRow() {
+		DecimalFormat dos = new DecimalFormat("0,000,000.00");
 		return Texto.ajustarCaracteres(this.getNombre(), 15)+
 				Texto.ajustarCaracteres(this.getVin(), 25) + 
-				Texto.ajustarCaracteres(Double.toString(this.getPrecio()), 18);
+				Texto.ajustarCaracteres(dos.format(this.getPrecio()), 18);
 	}
 
 	public String toString(){

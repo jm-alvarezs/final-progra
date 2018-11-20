@@ -56,6 +56,7 @@ class DetalleFactura implements Serializable {
 	}
 
 	public double getDescuento() {
+		if(getOferta() == 0) return 0;
 		return Archivos.getOferta(getOferta()).getDescuento();
 	}
 	

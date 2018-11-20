@@ -31,7 +31,29 @@ public class Principal {
         //Archivos.writeDetalles(detallesFile, Datos.generarDetalles());
         //HashMap<Integer, ArrayList<DetalleFactura>> detalles = Archivos.readDetalles(detallesFile);
         
-        System.out.println(getOfertas(ofertasFile));
+        System.out.println(getValoresClientes(clientesFile, facturasFile));
+    }
+
+    public static String getValoresClientes(String clientesFile, String facturasFile) {
+        ArrayList<Factura> facturas = Archivos.readFacturas(facturasFile);
+        HashMap<Integer, Double> valores = new HashMap<Integer, Double>();
+        for(int i = 0; i < facturas.size(); i++) {
+            int idcliente = Archivos.getCliente(facturas.get(i).getCliente()).getId();
+            double compra = facturas.get(i).calcularTotalFactura();
+            if(valores.containsKey(idcliente)) valores.put(idcliente, valores.get(idcliente) + compra);
+            else valores.put(idcliente, compra);
+        }
+        return valoresToString(clientesFile, valores);
+    }
+
+    public static String valoresToString(String clientesFile, HashMap<Integer, Double> valores) {
+        HashMap<Integer, Cliente> clientesMapa = Archivos.readClientes(clientesFile);
+        String total = Texto.ajustarCaracteres("Nombre", 25) + Texto.ajustarCaracteres("Monto Comprado", 30) + "\n";
+        DecimalFormat dos = new DecimalFormat("0,000,000.00");
+        for(HashMap.Entry<Integer, Double> entry: valores.entrySet()) {
+            total += Texto.ajustarCaracteres(Archivos.getCliente(entry.getKey()).getNombre(), 25) + Texto.ajustarCaracteres("$"+dos.format(entry.getValue()), 30) + "\n";
+        }
+        return total;
     }
 
     public static String getOfertas(String filename) {
@@ -154,7 +176,7 @@ public class Principal {
 
     public static String nominaToString(ArrayList<Nomina> nomina) {
         String total = Texto.ajustarCaracteres("Nombre", 20)+Texto.ajustarCaracteres("Nomina", 20) + "\n";
-        DecimalFormat dos = new DecimalFormat("0.00");
+        DecimalFormat dos = new DecimalFormat("00,000.00");
         for(int i = 0; i < nomina.size(); i++){
             total += Texto.ajustarCaracteres(nomina.get(i).getNombre(), 20) + Texto.ajustarCaracteres(dos.format(nomina.get(i).getMonto()), 20) + "\n";
         }
