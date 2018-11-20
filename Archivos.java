@@ -4,6 +4,23 @@ import java.util.HashMap;
 
 public class Archivos implements Serializable {
 
+    public static User getUser(String username) {
+        User user = new User();
+        try {
+            FileInputStream fis = new FileInputStream("./files/users.dat");
+            ObjectInputStream in = new ObjectInputStream(fis);
+            HashMap<String, User> mapa = (HashMap<String, User>) in.readObject();
+            user = mapa.get(username);
+            fis.close();
+            in.close();
+        }catch(ClassNotFoundException e){
+        }catch(FileNotFoundException e) {
+        }catch(IOException e) {
+        }
+
+        return user;
+    }
+
     public static Oferta getOferta(int oferta) {
         Oferta offer = new Oferta();
         try {
@@ -173,6 +190,20 @@ public class Archivos implements Serializable {
         }
     }
 
+
+    public static void writeUsers(String filename, HashMap<String, User> users) {
+        try {
+            FileOutputStream fo = new FileOutputStream(filename, true);
+            ObjectOutputStream o = new ObjectOutputStream(fo);
+            o.writeObject(users);
+            o.close();
+            fo.close();
+        }catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void writeVehiculos(String filename, HashMap<Integer, Vehiculo> vehiculo) {
         try {

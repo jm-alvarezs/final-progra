@@ -1,37 +1,140 @@
 import java.io.*;
 import java.text.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Collections;
-import java.util.Date;
+import java.util.*;
 
 public class Principal {
-    public static void main(String args[]) {
-    
-        String clientesFile = "./files/clientes.dat";
-        //Archivos.writeClientes(clientesFile, Datos.generarClientes());
-        //HashMap<Integer, Cliente> clientes = Archivos.readClientes(clientesFile);
-        
-        String facturasFile = "./files/facturas.dat";
-        //Archivos.writeFacturas(facturasFile, Datos.generarFacturas());
-        //HashMap<Integer, Factura> facturas = Archivos.readFacturas(facturasFile);
+    final static String clientesFile = "./files/clientes.dat";
+    final static String facturasFile = "./files/facturas.dat";
+    final static String vehiculosFile = "./files/vehiculos.dat";
+    final static String vendedoresFile = "./files/vendedores.dat";
+    final static String ofertasFile = "./files/ofertas.dat";
+    final static String detallesFile = "./files/detalles.dat";
+    final static String usersFile = "./files/users.dat";
+    public static void main(String args[])  {
 
-        String vehiculosFile = "./files/vehiculos.dat";
-        //Archivos.writeVehiculos(vehiculosFile, Datos.generarVehiculos());
+        if(!login(getUser(), getPass())) {
+            System.out.println("Autenticación Fallida. Intente de Nuevo. ");
+            return;
+        }
 
-        String vendedoresFile = "./files/vendedores.dat";
-        //Archivos.writeVendedores(vendedoresFile, Datos.generarVendedores());
-        //HashMap<Integer, Vendedor> vendedores = Archivos.readVendedores(vendedoresFile);
-        
-        String ofertasFile = "./files/ofertas.dat";
-        //Archivos.writeOfertas(ofertasFile, Datos.generarOfertas());
-        //HashMap<Integer, Oferta> ofertas = Archivos.readOfertas(ofertasFile);
+        boolean answer = true;
 
-        String detallesFile = "./files/detalles.dat";
-        //Archivos.writeDetalles(detallesFile, Datos.generarDetalles());
-        //HashMap<Integer, ArrayList<DetalleFactura>> detalles = Archivos.readDetalles(detallesFile);
-        
-        System.out.println(getClientesPorVendedor(clientesFile, vendedoresFile, facturasFile));
+        do {
+            consultar(getReporte());
+            answer = getSiNo();
+        }while(answer);
+    }
+
+    public static boolean getSiNo() {
+        System.out.println("¿Consultar de Nuevo? (s/n)");
+        char answer = Character.toLowerCase(Lectura.readChar());
+        while(answer != 's' && answer != 'n'){
+            System.out.println("Error. Intente de Nuevo. ");
+            answer = Character.toLowerCase(Lectura.readChar());
+        }
+        return answer == 's';
+    }
+
+    public static void imprimirOpciones() {
+        System.out.println("¿Que reporte desea consultar?");
+        System.out.println("1 = Ventas Mensuales\n2 = Inventario Total\n3 = Autos Modelo 2018\n4 = Vendedores\n5 = Facturas Mensuales");
+        System.out.println("6 = Ofertas Vigentes\n7 = Monto Comprado por Cliente\n8 = Clientes\n9 = Nomina Mensual\n10 = Clientes por Vendedor");
+    }
+
+    public static int getReporte() {
+        imprimirOpciones();
+        int opcion = Lectura.readInt();
+        while(opcion < 1 && opcion > 10){
+            System.out.println("Error. Intente de Nuevo. ");
+            imprimirOpciones();
+            opcion = Lectura.readInt();
+        }
+        return opcion;
+    }
+
+    public static void consultar(int opcion) {
+        String reporte = "";
+        switch(opcion) {
+            case 1: reporte = getVentasMensuales(facturasFile, getMes()); break;
+            case 2: reporte = getInventarioTotal(facturasFile, vehiculosFile, getSortInventario(), getOrden()); break;
+            case 3: reporte = getAutosModelo(2018, vehiculosFile); break;
+            case 4: reporte = getVendedores(vendedoresFile); break;
+            case 5: reporte = getFacturasMensuales(facturasFile, getMes()); break;
+            case 6: reporte = getOfertas(ofertasFile); break;
+            case 7: reporte = getValoresClientes(clientesFile, facturasFile); break;
+            case 8: reporte = getClientes(clientesFile, getSortCliente(), getOrden()); break;
+            case 9: reporte = getNominaMensual(getMes(), getSortNomina(), getOrden()); break;
+            case 10: reporte = getClientesPorVendedor(clientesFile, vendedoresFile, facturasFile);
+        }
+        System.out.println(reporte);
+    }
+
+    public static int getMes() {
+        System.out.println("¿Que mes desea consultar?");
+        int mes = Lectura.readInt();
+        while(mes < 1 && mes > 12) {
+            System.out.println("Error. Intente de Nuevo. ");
+            mes = Lectura.readInt();
+        }
+        return mes;
+    }
+
+    public static char getSortInventario() {
+        System.out.println("Introduce el orden del reporte: \nP = Precio\nN = Nombre");
+        char orden = Character.toLowerCase(Lectura.readChar());
+        while(orden != 'p' && orden != 'n'){
+            System.out.println("Error. Intente de Nuevo.");
+            orden = Character.toLowerCase(Lectura.readChar());
+        }
+        return orden;
+    }
+
+    public static char getSortNomina() {
+        System.out.println("Introduce el orden del reporte: \nN = Nombre\nM = Monto");
+        char orden = Character.toLowerCase(Lectura.readChar());
+        while(orden != 'm' && orden != 'n'){
+            System.out.println("Error. Intente de Nuevo.");
+            orden = Character.toLowerCase(Lectura.readChar());
+        }
+        return orden;
+    }
+
+    public static char getSortCliente() {
+        System.out.println("Introduce el orden del reporte: \nN = Nombre\nF = Fecha");
+        char orden = Character.toLowerCase(Lectura.readChar());
+        while(orden != 'f' && orden != 'n'){
+            System.out.println("Error. Intente de Nuevo.");
+            orden = Character.toLowerCase(Lectura.readChar());
+        }
+        return orden;
+    }
+
+    public static boolean getOrden() {
+        System.out.println("Introduce el orden del reporte: \nA = Ascendente\nD = descendente");
+        char orden = Character.toLowerCase(Lectura.readChar());
+        while(orden != 'a' && orden != 'd'){
+            System.out.println("Error. Intente de Nuevo.");
+            orden = Character.toLowerCase(Lectura.readChar());
+        }
+        return orden == 'a';
+    }
+
+    public static String getUser() {
+        System.out.print("Introduce tu nombre de usuario: ");
+        return Lectura.readString();
+    }
+
+    public static String getPass() {
+        System.out.print("Introduce tu contraseña: ");
+        return Lectura.readString();
+    }
+
+    public static boolean login(String user, String pass) {
+        return Archivos.getUser(user).getPass().equals(pass);
+    }
+
+    public static String getFacturasMensuales(String facturasFile, int mes) {
+        return Archivos.getFacturasMes(facturasFile, mes).toString();
     }
 
     public static String getValoresClientes(String clientesFile, String facturasFile) {
@@ -45,6 +148,8 @@ public class Principal {
         }
         return valoresToString(clientesFile, valores);
     }
+
+    
 
     public static String getClientesPorVendedor(String clientesFile, String vendedoresFile, String facturasFile) {
         ArrayList<Factura> facturas = Archivos.readFacturas(facturasFile);
@@ -107,7 +212,7 @@ public class Principal {
     public static String getClientes(String filename, char sort, boolean ascendente) {
         HashMap<Integer, Cliente> clientesMapa = Archivos.readClientes(filename);
         ArrayList<Cliente> clientes = clientesToArrayList(clientesMapa);
-        clientes = ordenarClientes(clientes, sort, ascendente);
+        clientes = Ordenar.ordenarClientes(clientes, sort, ascendente);
         return clientesToString(clientes);
     }
 
@@ -117,37 +222,6 @@ public class Principal {
             total += Texto.ajustarCaracteres(clientes.get(i).getNombre(), 25) + Texto.ajustarCaracteres(clientes.get(i).getMiembroDesde().toString(), 10) + "\n";
         }
         return total;
-    }
-
-    public static ArrayList<Cliente> ordenarClientes(ArrayList<Cliente> clientes, char sort, boolean ascendente) {
-        if(ascendente) {
-            if(sort == 'f') clientes = ordenarClientesFechaAsc(clientes);
-            else clientes = ordenarClientesNombreAsc(clientes);
-        } else {
-            if(sort == 'f') clientes = ordenarClientesFechaDesc(clientes);
-            else clientes = ordenarClientesNombreDesc(clientes);
-        }
-        return clientes;
-    }
-
-    public static ArrayList<Cliente> ordenarClientesNombreAsc(ArrayList<Cliente> clientes) {
-        Collections.sort(clientes, Cliente.nombreAsc);
-        return clientes;
-    }
-    
-    public static ArrayList<Cliente> ordenarClientesNombreDesc(ArrayList<Cliente> clientes) {
-        Collections.sort(clientes, Cliente.nombreDesc);
-        return clientes;
-    }
-
-    public static ArrayList<Cliente> ordenarClientesFechaAsc(ArrayList<Cliente> clientes) {
-        Collections.sort(clientes, Cliente.fechaAsc);
-        return clientes;
-    }
-    
-    public static ArrayList<Cliente> ordenarClientesFechaDesc(ArrayList<Cliente> clientes) {
-        Collections.sort(clientes, Cliente.fechaDesc);
-        return clientes;
     }
 
     public static ArrayList<Cliente> clientesToArrayList(HashMap<Integer, Cliente> mapa) {
@@ -167,39 +241,8 @@ public class Principal {
             Vendedor v = (Vendedor) entry.getValue();
             nomina.add(new Nomina(v.getId(), v.getNombrePersona().toString(), v.getSalario() + getComision(v.getId(), comisiones)));
         }
-        nomina = ordenarNomina(nomina, sort, ascendente);
+        nomina = Ordenar.ordenarNomina(nomina, sort, ascendente);
         return nominaToString(nomina);
-    }
-
-    public static ArrayList<Nomina> ordenarNomina(ArrayList<Nomina> nomina, char sort, boolean ascendente) {
-        if(ascendente) {
-            if(sort == 'n') nomina = ordenarNominaNombreAsc(nomina);
-            else nomina = ordenarNominaMontoAsc(nomina);
-        } else {
-            if(sort == 'n') nomina = ordenarNominaNombreDesc(nomina);
-            else nomina = ordenarNominaMontoDesc(nomina);
-        }
-        return nomina;
-    }
-
-    public static ArrayList<Nomina> ordenarNominaNombreAsc(ArrayList<Nomina> nomina) {
-        Collections.sort(nomina, Nomina.nombreAsc);
-        return nomina;
-    }
-
-    public static ArrayList<Nomina> ordenarNominaNombreDesc(ArrayList<Nomina> nomina) {
-        Collections.sort(nomina, Nomina.nombreDesc);
-        return nomina;
-    }
-    
-    public static ArrayList<Nomina> ordenarNominaMontoAsc(ArrayList<Nomina> nomina) {
-        Collections.sort(nomina, Nomina.montoAsc);
-        return nomina;
-    }
-    
-    public static ArrayList<Nomina> ordenarNominaMontoDesc(ArrayList<Nomina> nomina) {
-        Collections.sort(nomina, Nomina.montoDesc);
-        return nomina;
     }
 
     public static String nominaToString(ArrayList<Nomina> nomina) {
@@ -235,7 +278,7 @@ public class Principal {
             }
         }
         ArrayList<Vehiculo> inventario = vehiculosToArrayList(vehiculos);
-        inventario = ordenarVehiculos(inventario, sort, ascendente);
+        inventario = Ordenar.ordenarVehiculos(inventario, sort, ascendente);
         return inventarioToRow(inventario);
     }
 
@@ -245,74 +288,12 @@ public class Principal {
         return total;
     }
 
-    public static ArrayList<Vehiculo> ordenarVehiculos(ArrayList<Vehiculo> arreglo, char sort, boolean ascendente) {
-        if(ascendente) {
-            if(Character.toLowerCase(sort) == 'p') arreglo = ordenarVehiculosPrecioAsc(arreglo);
-            else arreglo = ordenarVehiculosNombreAsc(arreglo);
-        } else {
-            if(Character.toLowerCase(sort) == 'p') arreglo = ordenarVehiculosPrecioDesc(arreglo);
-            else arreglo = ordenarVehiculosNombreDesc(arreglo);
-        }
-        return arreglo;
-    }
-
-    public static ArrayList<Factura> ordenarFacturas(ArrayList<Factura> arreglo, char sort, boolean ascendente) {
-        if(ascendente) {
-            if(Character.toLowerCase(sort) == 'd') arreglo = ordenarFacturasFechaAsc(arreglo);
-            else arreglo = ordenarFacturasFolioAsc(arreglo);
-        } else {
-            if(Character.toLowerCase(sort) == 'd') arreglo = ordenarFacturasFechaDesc(arreglo);
-            else arreglo = ordenarFacturasFolioDesc(arreglo);
-        }
-        return arreglo;
-    }
-
     public static ArrayList<Vehiculo> vehiculosToArrayList(HashMap<Integer, Vehiculo> vehiculos) {
         ArrayList<Vehiculo> arreglo = new ArrayList<Vehiculo>();
         for (HashMap.Entry<Integer, Vehiculo> entry : vehiculos.entrySet()) {
             arreglo.add(entry.getValue());
         }
         return arreglo;
-    }
-
-    public static ArrayList<Factura> ordenarFacturasFechaAsc(ArrayList<Factura> facturas) {
-        Collections.sort(facturas, Factura.fechaAsc);
-        return facturas;
-    }
-
-    public static ArrayList<Factura> ordenarFacturasFechaDesc(ArrayList<Factura> facturas) {
-        Collections.sort(facturas, Factura.fechaDesc);
-        return facturas;
-    }
-    
-    public static ArrayList<Factura> ordenarFacturasFolioAsc(ArrayList<Factura> facturas) {
-        Collections.sort(facturas, Factura.folioAsc);
-        return facturas;
-    }
-    
-    public static ArrayList<Factura> ordenarFacturasFolioDesc(ArrayList<Factura> facturas) {
-        Collections.sort(facturas, Factura.folioDesc);
-        return facturas;
-    }
-
-    public static ArrayList<Vehiculo> ordenarVehiculosPrecioAsc(ArrayList<Vehiculo> vehiculos) {
-        Collections.sort(vehiculos, Vehiculo.precioAsc);
-        return vehiculos;
-    }
-
-    public static ArrayList<Vehiculo> ordenarVehiculosPrecioDesc(ArrayList<Vehiculo> vehiculos) {
-        Collections.sort(vehiculos, Vehiculo.precioDesc);
-        return vehiculos;
-    }
-
-    public static ArrayList<Vehiculo> ordenarVehiculosNombreAsc(ArrayList<Vehiculo> vehiculos) {
-        Collections.sort(vehiculos, Vehiculo.nombreAsc);
-        return vehiculos;
-    }
-
-    public static ArrayList<Vehiculo> ordenarVehiculosNombreDesc(ArrayList<Vehiculo> vehiculos) {
-        Collections.sort(vehiculos, Vehiculo.nombreDesc);
-        return vehiculos;
     }
     
     public static String getAutosModelo(int modelo, String filename) {
@@ -333,10 +314,10 @@ public class Principal {
         return total;
     }
 
-    public static String getVentasMensuales(String filename, int mes) {
-        double total = Archivos.getVentasMensuales(filename, mes);
-        DecimalFormat dos = new DecimalFormat("0.00");
-        return "Ventas del Mes de"+Fecha.mesToString(mes)+" = "+dos.format(total);
+    public static String getVentasMensuales(String facturasFile, int mes) {
+        double total = Archivos.getVentasMensuales(facturasFile, mes);
+        DecimalFormat dos = new DecimalFormat("0,000,000.00");
+        return "Ventas del Mes de"+Fecha.mesToString(mes)+" = $"+dos.format(total);
     }
 
     public static String vehiculosToString(ArrayList<Vehiculo> vehiculos) {
@@ -354,5 +335,4 @@ public class Principal {
 	    }
 	    return result;
     }
-
 }

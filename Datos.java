@@ -3,6 +3,16 @@ import java.util.HashMap;
 
 public class Datos {
 
+    public static void generarDatos() {
+        Archivos.writeClientes(clientesFile, Datos.generarClientes());
+        Archivos.writeFacturas(facturasFile, Datos.generarFacturas());
+        Archivos.writeVehiculos(vehiculosFile, Datos.generarVehiculos());
+        Archivos.writeVendedores(vendedoresFile, Datos.generarVendedores());
+        Archivos.writeOfertas(ofertasFile, Datos.generarOfertas());
+        Archivos.writeDetalles(detallesFile, Datos.generarDetalles());
+        Archivos.writeUsers(usersFile, Datos.generarUsuarios());
+    }
+
     public static HashMap<Integer, Vehiculo> generarVehiculos() {
         HashMap<Integer, Vehiculo> vehiculos = new HashMap<Integer, Vehiculo>();
         vehiculos.put(1, new Vehiculo(1, 560699, "C", "WDB1260251A336981", "rojo", "200", 2017, 5));
@@ -114,6 +124,13 @@ public class Datos {
         vendedores.put(1209, new Vendedor(1209,new Nombre("Martha","Sanchez"),new Direccion("Rangel Frias",122,"Centro","Monterrey",66343),new Fecha(12,4,12),15344,0.02));
         vendedores.put(1210, new Vendedor(1210,new Nombre("Fidel","Rueda"),new Direccion("Paseo Arbolado",214,"Paseo de la Huasteca","Santa Catarina",62133),new Fecha(12,6,15),12364,0.03));
         return vendedores;
+    }
+
+    public static HashMap<String, User> generarUsuarios() {
+        HashMap<String, User> users = new HashMap<String, User>();
+        users.put("Admin", new User(1, "Admin", "jkl10", 1));
+        users.put("v1202", new User(2, "v1202", "hjk90", 2));
+        return users;
     }
 
 }
