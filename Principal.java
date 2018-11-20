@@ -26,7 +26,61 @@ public class Principal {
         //Archivos.writeDetalles(detallesFile, Datos.generarDetalles());
         //HashMap<Integer, ArrayList<DetalleFactura>> detalles = Archivos.readDetalles(detallesFile);
     
-        System.out.println(getNominaMensual(11, 'n', true));
+        System.out.println(getClientes(clientesFile, 'f', true));
+    }
+
+    public static String getClientes(String filename, char sort, boolean ascendente) {
+        HashMap<Integer, Cliente> clientesMapa = Archivos.readClientes(filename);
+        ArrayList<Cliente> clientes = clientesToArrayList(clientesMapa);
+        clientes = ordenarClientes(clientes, sort, ascendente);
+        return clientesToString(clientes);
+    }
+
+    public static String clientesToString(ArrayList<Cliente> clientes) {
+        String total = Texto.ajustarCaracteres("Nombre", 25) + Texto.ajustarCaracteres("Miembro Desde (yy/mm/dd)", 10) + "\n";
+        for(int i = 0; i < clientes.size(); i++) {
+            total += Texto.ajustarCaracteres(clientes.get(i).getNombre(), 25) + Texto.ajustarCaracteres(clientes.get(i).getMiembroDesde().toString(), 10) + "\n";
+        }
+        return total;
+    }
+
+    public static ArrayList<Cliente> ordenarClientes(ArrayList<Cliente> clientes, char sort, boolean ascendente) {
+        if(ascendente) {
+            if(sort == 'f') clientes = ordenarClientesFechaAsc(clientes);
+            else clientes = ordenarClientesNombreAsc(clientes);
+        } else {
+            if(sort == 'f') clientes = ordenarClientesFechaDesc(clientes);
+            else clientes = ordenarClientesNombreDesc(clientes);
+        }
+        return clientes;
+    }
+
+    public static ArrayList<Cliente> ordenarClientesNombreAsc(ArrayList<Cliente> clientes) {
+        Collections.sort(clientes, Cliente.nombreAsc);
+        return clientes;
+    }
+    
+    public static ArrayList<Cliente> ordenarClientesNombreDesc(ArrayList<Cliente> clientes) {
+        Collections.sort(clientes, Cliente.nombreDesc);
+        return clientes;
+    }
+
+    public static ArrayList<Cliente> ordenarClientesFechaAsc(ArrayList<Cliente> clientes) {
+        Collections.sort(clientes, Cliente.fechaAsc);
+        return clientes;
+    }
+    
+    public static ArrayList<Cliente> ordenarClientesFechaDesc(ArrayList<Cliente> clientes) {
+        Collections.sort(clientes, Cliente.fechaDesc);
+        return clientes;
+    }
+
+    public static ArrayList<Cliente> clientesToArrayList(HashMap<Integer, Cliente> mapa) {
+        ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+        for(HashMap.Entry<Integer, Cliente> entry: mapa.entrySet()) {
+            clientes.add(entry.getValue());
+        }
+        return clientes;
     }
 
     public static String getNominaMensual(int mes, char sort, boolean ascendente) {
@@ -105,7 +159,7 @@ public class Principal {
                 if(vehiculos.containsKey(detalles.get(j).getProducto())) vehiculos.remove(detalles.get(j).getProducto());
             }
         }
-        ArrayList<Vehiculo> inventario = mapaToArrayList(vehiculos);
+        ArrayList<Vehiculo> inventario = vehiculosToArrayList(vehiculos);
         inventario = ordenarVehiculos(inventario, sort, ascendente);
         return inventarioToRow(inventario);
     }
@@ -138,7 +192,7 @@ public class Principal {
         return arreglo;
     }
 
-    public static ArrayList<Vehiculo> mapaToArrayList(HashMap<Integer, Vehiculo> vehiculos) {
+    public static ArrayList<Vehiculo> vehiculosToArrayList(HashMap<Integer, Vehiculo> vehiculos) {
         ArrayList<Vehiculo> arreglo = new ArrayList<Vehiculo>();
         for (HashMap.Entry<Integer, Vehiculo> entry : vehiculos.entrySet()) {
             arreglo.add(entry.getValue());

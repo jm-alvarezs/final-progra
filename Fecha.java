@@ -84,7 +84,7 @@ public class Fecha implements Serializable {
 		else strmes = Integer.toString(mes);
 		if(dia < 10) strdia = "0"+Integer.toString(dia);
 		else strdia = Integer.toString(dia);
-		return strdia+"-"+strmes+"-"+year;
+		return year+"-"+strmes+"-"+strdia;
 	}
 	
 }
